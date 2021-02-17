@@ -1,5 +1,9 @@
 ## ShoppingBuddy
 
+Amrit: main.html
+Trevor: index.html
+Maximus: profile.html
+
 ## ShoppingBuddy
 
 * [General info](#general-info)
