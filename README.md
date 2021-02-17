@@ -1,4 +1,9 @@
 ## ShoppingBuddy
+Maximus Joe: profile.html
+Amrit Manhas: main.html
+Trevor: index.html
+
+## My Web Application (ShoppingBuddy)
 
 * [General info](#general-info)
 * [Technologies](#technologies)
