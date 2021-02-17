@@ -1,4 +1,7 @@
-## My Web Application (Title)
+Maximus Joe: profile.html
+
+
+## My Web Application (ShoppingBuddy)
 
 * [General info](#general-info)
 * [Technologies](#technologies)
