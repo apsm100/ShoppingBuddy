@@ -1,6 +1,6 @@
 ## ShoppingBuddy
 
-## My Web Application (ShoppingBuddy)
+## ShoppingBuddy
 
 * [General info](#general-info)
 * [Technologies](#technologies)
