@@ -1,41 +1,42 @@
-Maximus Joe: profile.html
+## ShoppingBuddy
 
-
-## My Web Application (ShoppingBuddy)
+## ShoppingBuddy
 
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Contents](#content)
 
 ## General Info
-This browser based web application to ...
-	
+This browser based web application to shop for people who can't shop for themselves.
+
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
 * JavaScript
-* Bootstrap 
+* Bootstrap
 * ...
-	
+
 ## Content
 Content of the project folder:
 
 ```
- Top level of project folder: 
+ Top level of project folder:
 ├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
+├── index.html               # trevor landing HTML file, this is what users see when you come to url
+├── main.html                # amrit
+├── profile.html             # max
 └── README.md
 
 It has the following subfolders and files:
 ├── .git                     # Folder for git repo
 ├── images                   # Folder for images
-    /blah.jpg                # 
+    /blah.jpg                #
 ├── scripts                  # Folder for scripts
-    /blah.js                 # 
+    /blah.js                 #
 ├── styles                   # Folder for styles
-    /blah.css                # 
+    /blah.css                #
 
-Firebase hosting files: 
+Firebase hosting files:
 ├── .firebaserc...
 
 
