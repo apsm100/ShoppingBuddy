@@ -82,11 +82,6 @@
             
         }
 
-        .card {
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
         svg:hover {
             filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
         }
