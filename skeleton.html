@@ -35,7 +35,6 @@
             background-color: whitesmoke;
             align-items: center;
             box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.1), 0 2px 5px 5px rgba(0, 0, 0, 0.1);
-
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 1fr;
@@ -44,17 +43,15 @@
                 "mb1 mb2 mb3 mb4 mb5";
         }
 
-        .content {
+        .container-fluid {
             position: absolute;
             z-index: -1;
             top: 64px;
             bottom: 64px;
-            width: 100%;
             overflow-y: auto;
-            
         }
 
-        .content::-webkit-scrollbar {
+        .container-fluid::-webkit-scrollbar {
             display: none;
         }
 
@@ -66,7 +63,7 @@
             align-items: center;
             font-family: 'Vidaloka', serif;
             user-select: none;
-            margin-top:0.25em;    
+            margin-top:0.25em;   
         }
 
         .mb1 {
@@ -97,12 +94,10 @@
         .mb5 {
             margin-left: auto;
             margin-right: auto;
+            
         }
 
         .card {
-            margin-left: auto;
-            margin-right: auto;
-            width: 95%;
             margin-top: 30px;
             margin-bottom: 30px;
         }
@@ -133,8 +128,8 @@
         </div>
     </div>
 
-    <div class="content">
-        <!-- Add content here. -->
+    <div class="container-fluid">
+        <!-- content -->
     </div>
 
     <div class="bottom-nav-bar">
