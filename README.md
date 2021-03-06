@@ -1,8 +1,6 @@
 ## ShoppingBuddy
 
-Amrit: main.html
-Trevor: index.html
-Maximus: profile.html
+The greatest thing ever.
 
 ## ShoppingBuddy
 
