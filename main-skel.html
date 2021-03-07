@@ -11,14 +11,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-
     <link rel="stylesheet" href="styles/style.css">
     <!-- Optional styles and scripts of your own -->
     <style>
-        .card {
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
+      .body {
+        display: grid;
+        grid-template-rows: 7% 43% 43% 7%;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      #containerone {
+        grid-row: 2 / span 1;
+      }
     </style>
 
 
@@ -36,49 +39,52 @@
         </div>
     </div>
 
-    <div class="container-fluid">
-        <!-- sample content -->
-        <div style="margin-top:10px;" class="input-group mb-4 border rounded-pill p-1">
-            <div class="input-group-prepend border-0">
-                <button id="button-addon4" type="button" class="btn btn-link text-info"><i
-                        class="fa fa-search"></i></button>
-            </div>
-            <input type="search" placeholder="Search for items..." aria-describedby="button-addon4"
-                class="form-control bg-none border-0">
-        </div>
-        <div class="card">
-            <img style=" height:200px;width:auto;object-fit:cover;" class="card-img-top" src="images/shoe.webp"
-            alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Women's UA Charged Breathe LACE Sportstyle Shoes</h5>
-                <p class="card-text">Seriously improves your stamina, no joke; you'll be a beast and bulked, trust me I
-                    asked the private shopper.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Just for you</h5>
-                <p class="card-text">Looks like you love shopping for clothes, connect with our vetted experts and look
-                    your best.</p>
-                <a href="#" class="btn btn-primary">Create order</a>
+    <div class="containerone">
+            <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Shopping Buddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">New coupons for you</h5>
-                <p class="card-text">Wow you have been buying a lot of milk and cheese, please take this $0.02 coupon,
-                    on us.</p>
-                <a href="#" class="btn btn-primary">More milk</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Our shoppers are here for you</h5>
-                <p class="card-text">Worry-free shop with a vetted private shopper today. Get matched today.</p>
-                <a href="#" class="btn btn-primary">Connect</a>
-            </div>
-        </div>
+    </nav>
+    <div class="container">
+        <h1 class="display-4">Thank you for logging in to Shopping Buddy!</h1>
+        <button type="button" class="btn btn-primary">Connect with shopper</button>
+        <button type="button" class="btn btn-secondary">Explore local </button>
+    </div>
+    <footer>
+        <p>Shopping Buddy inc.</p>
+    </footer>
+
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, Firebase, API related    -->
+    <!----------------------------------------------->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+
     </div>
 
     <div class="bottom-nav-bar">
