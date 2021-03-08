@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Vidaloka&display=swap");
+
+.top-nav-bar {
+  position: absolute;
+  top: 0;
+  height: 64px;
+  width: 100%;
+  background-color: whitesmoke;
+  align-items: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.containerone {
+  display: grid;
+  grid-template-rows: 2fr 1fr 4fr 1fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin-top: 64px;
+  margin-bottom: 64px;
+  background-image: url(/images/background.jpg);
+}
+.Header {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  text-align: center;
+}
+.container {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+}
+#login {
+  max-height: 75px;
+  max-width: 322px;
+}
+
+.bottom-nav-bar {
+  position: absolute;
+  bottom: 0;
+  height: 64px;
+  width: 100%;
+  background-color: whitesmoke;
+  align-items: center;
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.1), 0 2px 5px 5px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "mb1 mb2 mb3 mb4 mb5";
+}
+
+.container-fluid {
+  position: absolute;
+  z-index: -1;
+  top: 64px;
+  bottom: 64px;
+  overflow-y: auto;
+}
+
+.container-fluid::-webkit-scrollbar {
+  display: none;
+}
+
+.logo {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Vidaloka", serif;
+  user-select: none;
+  margin-top: 0.25em;
+}
+
+.mb1 {
+  grid-area: mb1;
+}
+
+.mb2 {
+  grid-area: mb2;
+}
+
+.mb3 {
+  grid-area: mb3;
+}
+
+.mb4 {
+  grid-area: mb4;
+}
+
+.mb5 {
+  grid-area: mb5;
+}
+
+.mb1,
+.mb2,
+.mb3,
+.mb4,
+.mb5 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+svg:hover {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+    brightness(104%) contrast(97%);
+}
+
+/* Media Queries */
+/* @media screen and (min-width: 1125px) {
+            .bottom-nav-bar {
+                display: none;
+            } */
