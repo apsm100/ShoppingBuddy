@@ -40,6 +40,22 @@
             display: none;
             user-select: none;
         }
+
+        #search-item {
+            font-size:115%;
+            padding-bottom:5px;
+        }
+
+        #search-item:hover {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+           
+        }
+        #search-item-category {
+            float: right;
+            font-style:italic;
+        }
+
+
     </style>
 
 
@@ -69,36 +85,7 @@
 
         <div id="search-container" class="container-fluid">
             <div id="suggestions">
-                <div class="card">
-                    <div class="card-body" id="suggestion-item" onclick="suggestionClick(this.innerHTML)">apples</div>
-                </div>
-                <div class="card">
-                    <div class="card-body" id="suggestion-item" onclick="suggestionClick(this.innerHTML)">apricots</div>
-                </div>
-                <div class="card">
-                    <div class="card-body" id="suggestion-item" onclick="suggestionClick(this.innerHTML)">apes</div>
-                </div>
-                <div class="card">
-                    <div class="card-body" id="suggestion-item" onclick="suggestionClick(this.innerHTML)">arps</div>
-                </div>
-                <div class="card">
-                    <div class="card-body" id="suggestion-item" onclick="suggestionClick(this.innerHTML)">awls</div>
-                </div>
-
             </div>
-
-            <table id="results" style="width:100%">
-                <tr>
-                    <td>Result one</td>
-                </tr>
-                <tr>
-                    <td>Result two</td>
-                </tr>
-                <tr>
-                    <td>Result three</td>
-                </tr>
-            </table>
-
 
         </div>
 
@@ -224,6 +211,9 @@
         <!-- JS files: Your own JavaScript functions included here    -->
         <!--------------------------------------------------------------------->
         <script src="scripts/index.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+        <script src="scripts/firebase_api.js"></script>
 </body>
 
 </html>
