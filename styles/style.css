@@ -33,6 +33,7 @@
             top: 64px;
             bottom: 64px;
             overflow-y: auto;
+            user-select: none;
         }
 
         .container-fluid::-webkit-scrollbar {

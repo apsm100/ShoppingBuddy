@@ -5,6 +5,9 @@ var topSearchBar = document.getElementById("top-search-bar");
 var topSearchBarInput = document.getElementById("search-input");
 var searchContainer = document.getElementById("search-container");
 var searchSuggestion = document.getElementById("suggestions");
+var shoppingListContainer = document.getElementById("shopping-list");
+var shoppingListHeader = document.getElementById("shopping-list-header");
+
 
 function searchStart() {
     mainSearch.style.display = 'none';
@@ -14,13 +17,44 @@ function searchStart() {
     topSearchBarInput.focus();
 }
 function searchTyping() {
-    mainContainer.style.display = 'none';
-    searchContainer.style.display = "block";
-    searchdb(topSearchBarInput.value);
+    if (topSearchBarInput.value == ""){
+        mainContainer.style.display = 'block';
+        searchContainer.style.display = "none";
+    } else {
+        mainContainer.style.display = 'none';
+        searchContainer.style.display = "block";
+        searchdb(topSearchBarInput.value);
+    }
+    
 }
-function suggestionClick(suggestion) {
-    topSearchBarInput.value = suggestion;
-    searchdb(suggestion);
+function suggestionClick(suggestion, category) {
+    // topSearchBarInput.value = suggestion;
+    
+    // searchdb(suggestion);
+
+    addShoppingList(suggestion, category)
+    
+}
+
+function addShoppingList(itemVal, categoryVal) {
+    var shoppingList = db.collection("shoppingList");
+
+    shoppingList.add({
+        item: itemVal,
+        category: categoryVal,
+    });
+}
+
+function deleteItem (itemVal, categoryVal) {
+    var shoppingListItem = db.collection('shoppingList').where('item','==',itemVal).where('category','==',categoryVal);
+    shoppingListItem.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          doc.ref.delete();
+          displayShoppingList();
+        });
+      });
+    
+    
 }
 
 function searchdb(item) {
@@ -42,7 +76,7 @@ function populateSearch(item) {
     a = document.createElement("div");
     a.setAttribute("class", "card");
     a.setAttribute("id", "search-item");
-    a.setAttribute("onclick", "suggestionClick('" + item.query + "')");
+    a.setAttribute("onclick", "suggestionClick('" + item.query + "', '" + item.category + "')");
     b = document.createElement("div");
     b.setAttribute("id", "suggestion-item");
 
@@ -63,3 +97,40 @@ function populateSearch(item) {
     searchSuggestion.appendChild(a);
     
 }
+
+function populateShoppingList(itemDat) {
+    a = document.createElement("div");
+    a.setAttribute("class", "card-body");
+    a.setAttribute("id", "shopping-list-item");
+    a.setAttribute("onclick", "deleteItem('" + itemDat.item + "', '" + itemDat.category + "')");
+
+
+    itemName = document.createElement("span");
+    itemName.setAttribute("id", "item-name");
+
+    c = document.createElement("div");
+    c.setAttribute("id", "item-category");
+
+    itemName.innerHTML = itemDat.item;
+    c.innerHTML = itemDat.category;
+
+    a.appendChild(itemName);
+    a.appendChild(c);
+
+
+    shoppingListContainer.appendChild(a);
+    
+}
+
+function displayShoppingList() {
+    shoppingListContainer.innerHTML = "";
+    db.collection("shoppingList").get()
+        .then(function (snap) {
+            snap.forEach(function (doc) {
+                populateShoppingList(doc.data());
+            })
+
+        })
+    // shoppingListHeader.innerHTML = "Shopping List(" + count + ")";
+}
+displayShoppingList();
