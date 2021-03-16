@@ -1,48 +1,49 @@
 var mainContainer = document.getElementById("main-container");
-var mainSearch = document.getElementById('main-search');
-var topNavBar = document.getElementById("top-nav-bar");
-var topSearchBar = document.getElementById("top-search-bar");
-var topSearchBarInput = document.getElementById("search-input");
-var searchContainer = document.getElementById("search-container");
+
+var itemNameInput = document.getElementById("item-name-input");
+var categoryInput = document.getElementById("category-name-input");
+var quantityInput = document.getElementById("quantity-input");
+
 var searchSuggestion = document.getElementById("suggestions");
+
 var shoppingListContainer = document.getElementById("shopping-list");
 var shoppingListHeader = document.getElementById("shopping-list-header");
 
 
-function searchStart() {
-    mainSearch.style.display = 'none';
-    topNavBar.style.display = 'none';
-    topSearchBar.style.display = 'block';
-    mainContainer.style.display = 'block';
-    topSearchBarInput.focus();
-}
 function searchTyping() {
-    if (topSearchBarInput.value == ""){
-        mainContainer.style.display = 'block';
-        searchContainer.style.display = "none";
+    if (itemNameInput.value == ""){
+        searchSuggestion.innerHTML = "";
     } else {
-        mainContainer.style.display = 'none';
-        searchContainer.style.display = "block";
-        searchdb(topSearchBarInput.value);
+        searchdb(itemNameInput.value);
     }
     
 }
 function suggestionClick(suggestion, category) {
-    // topSearchBarInput.value = suggestion;
-    
-    // searchdb(suggestion);
-
-    addShoppingList(suggestion, category)
+    itemNameInput.value = suggestion;
+    categoryInput.value = category;
+    quantityInput.value = 1;
+    searchSuggestion.innerHTML = "";
+    // addShoppingList(suggestion, category);
     
 }
 
-function addShoppingList(itemVal, categoryVal) {
+function addShoppingList() {
+    itemVal = itemNameInput.value;
+    categoryVal = categoryInput.value;
+    quantityVal = quantityInput.value;
+    
+    itemNameInput.value = "";
+    categoryInput.value = "";
+    quantityInput.value = 1;
+
     var shoppingList = db.collection("shoppingList");
 
     shoppingList.add({
         item: itemVal,
         category: categoryVal,
+        quantity: quantityVal,
     });
+    displayShoppingList();
 }
 
 function deleteItem (itemVal, categoryVal) {
@@ -53,8 +54,6 @@ function deleteItem (itemVal, categoryVal) {
           displayShoppingList();
         });
       });
-    
-    
 }
 
 function searchdb(item) {
@@ -111,7 +110,7 @@ function populateShoppingList(itemDat) {
     c = document.createElement("div");
     c.setAttribute("id", "item-category");
 
-    itemName.innerHTML = itemDat.item;
+    itemName.innerHTML = itemDat.quantity + " x " + itemDat.item;
     c.innerHTML = itemDat.category;
 
     a.appendChild(itemName);

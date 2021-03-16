@@ -1,0 +1,63 @@
+.card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.search-icon {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.top-search-bar {
+    position: absolute;
+    top: 0;
+    height: 64px;
+    width: 100%;
+    background-color: whitesmoke;
+    align-items: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    display: none;
+    transition: 1s;
+}
+
+#shopping-list-header {
+    text-align:center;
+    margin-top:2em;
+}
+
+#shopping-list, #addto-shopping-list, #search-item {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search-item {
+    margin-top:0;
+    margin-bottom:1em;
+}
+
+#search-item:hover, #shopping-list-item:hover {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+   
+}
+#search-item-category, #item-category {
+    float: right;
+    font-style:italic;
+}
+
+#add-item-button {
+    float:right;
+}
+
+#item-name-input, #category-name-input {
+    max-width: 8em;
+    vertical-align: middle;
+}
+
+#quantity-input {
+    max-width:3em;
+    vertical-align: middle;
+}
+input {
+    border:hidden;
+}
+

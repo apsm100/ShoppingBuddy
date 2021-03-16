@@ -13,61 +13,7 @@
 
 
     <link rel="stylesheet" href="styles/style.css">
-    <!-- Optional styles and scripts of your own -->
-    <style>
-        .card {
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .search-icon {
-            filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
-        }
-
-        .top-search-bar {
-            position: absolute;
-            top: 0;
-            height: 64px;
-            width: 100%;
-            background-color: whitesmoke;
-            align-items: center;
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: 1s;
-        }
-
-        #shopping-list-header {
-            text-align:center;
-            line-height: 0.75em;
-        }
-
-        #shopping-list {
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #search-container {
-            display: none;
-            user-select: none;
-        }
-
-        #search-item {
-            font-size:115%;
-            padding-bottom:5px;
-        }
-
-        #search-item:hover, #shopping-list-item:hover {
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-           
-        }
-        #search-item-category, #item-category {
-            float: right;
-            font-style:italic;
-        }
-
-
-    </style>
-
+    <link rel="stylesheet" href="styles/index-style.css">
 
 </head>
 
@@ -82,38 +28,25 @@
             <h1>shoppingbuddy</h1>
         </div>
     </div>
-    <div class="top-search-bar" id="top-search-bar">
-        <div style="margin-top:10px;" class="input-group mb-4 border rounded-pill p-1">
-            <div class="input-group-prepend border-0">
-                <button id="button-addon4" type="button" class="btn btn-link text-info"><i class="bi bi-search""></i></button>
-            </div>
-            <input id="search-input" oninput="searchTyping()" style="background-color: whitesmoke;" type="search"
-                        placeholder="Search for items..." aria-describedby="button-addon4"
-                        class="form-control bg-none border-0">
-            </div>
-        </div>
-
-        <div id="search-container" class="container-fluid">
-            <div id="suggestions">
-            </div>
-
-        </div>
 
         <div id="main-container" class="container-fluid">
-            <div style="margin-top:10px;" class="input-group mb-4 border rounded-pill p-1" id="main-search">
-                <div class="input-group-prepend border-0">
-                    <button id="button-addon4" type="button" class="btn btn-link text-info"><i
-                            class="fa fa-search"></i></button>
-                </div>
-                <input onclick="searchStart()" type="search" placeholder="Search for items..."
-                    aria-describedby="button-addon4" class="form-control bg-none border-0">
-            </div>
-            <h5 id="shopping-list-header">Shopping List</h5>
+            <h5 id="shopping-list-header">Amrit's Shopping List</h5>
             <div class="card" id="shopping-list">
-                <!-- <div class="card-body" id="loading-item">
-                    <span id="item-name">Loading...</span>
-                </div> -->
             </div>
+            <div class="card" id="addto-shopping-list">
+                <div class="card-body">
+                    <input id="item-name-input" oninput="searchTyping()" type="search" placeholder="Item">
+                    <input id="category-name-input" type="search" placeholder="Category">
+                    <input id="quantity-input" type="number" placeholder="Quantity" value="1">
+                    <a onclick="addShoppingList()" class="btn btn-primary" id="add-item-button">Add</a>
+
+                </div>
+                <div id="suggestions">
+                </div>
+            </div>
+
+            <h5 id="shopping-list-header">Offers For You</h5>
+            <!-- garbage -->
             <div class="card"">
             <img style=" height:200px;width:auto;object-fit:cover;"class="card-img-top" src="images/shoe.webp"
                 alt="Card image cap">
