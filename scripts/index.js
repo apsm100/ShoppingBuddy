@@ -34,7 +34,7 @@ function addShoppingList() {
     
     itemNameInput.value = "";
     categoryInput.value = "";
-    quantityInput.value = 1;
+    quantityInput.value = "";
 
     var shoppingList = db.collection("shoppingList");
 
