@@ -100,4 +100,7 @@ input {
           "menu1"
           "menu2";
       }
+    #shopping-list {
+        width: 80%;
+    }
   }
