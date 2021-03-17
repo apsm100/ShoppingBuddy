@@ -30,23 +30,29 @@
     </div>
 
         <div id="main-container" class="container-fluid">
-            <h5 id="shopping-list-header">Amrit's Shopping List</h5>
-            <div class="card" id="shopping-list">
-            </div>
-            <div class="card" id="addto-shopping-list">
-                <div class="card-body">
-                    <input id="item-name-input" oninput="searchTyping()" type="search" placeholder="Item">
-                    <input id="category-name-input" type="search" placeholder="Category">
-                    <input id="quantity-input" type="number" placeholder="#of">
-                    <a onclick="addShoppingList()" class="btn btn-primary" id="add-item-button">Add</a>
-
+            <div class="grid-container">
+                <div class="menu1">
+                    <h5 id="shopping-list-header">Amrit's Shopping List</h5>
+                    <div class="card" id="shopping-list">
+                    </div>
+                    <div class="card" id="addto-shopping-list">
+                        <div class="card-body">
+                            <input id="item-name-input" oninput="searchTyping()" type="search" placeholder="Item">
+                            <input id="category-name-input" type="search" placeholder="Category">
+                            <input id="quantity-input" type="number" placeholder="#of">
+                            <a onclick="addShoppingList()" class="btn btn-primary" id="add-item-button">Add</a>
+        
+                        </div>
+                        <div id="suggestions">
+                        </div>
+                    </div>
+        
+                    
                 </div>
-                <div id="suggestions">
-                </div>
-            </div>
-
+                
+                <div class="menu2">
+                                <!-- garbage -->
             <h5 id="shopping-list-header">Offers For You</h5>
-            <!-- garbage -->
             <div class="card"">
             <img style=" height:200px;width:auto;object-fit:cover;"class="card-img-top" src="images/shoe.webp"
                 alt="Card image cap">
@@ -84,6 +90,10 @@
                 </div>
             </div>
         </div>
+                </div>
+              </div>
+
+
 
         <div class="bottom-nav-bar">
             <div class="mb1">
