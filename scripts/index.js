@@ -38,7 +38,7 @@ function addItem() {
         quantity: quantityVal,
     }
     shoppingList.add(item);
-    populateShoppingList(item);
+    populateShoppingList(item, true);
 
     itemNameInput.value = "";
     categoryInput.value = "";
@@ -59,7 +59,17 @@ function deleteItem (itemVal, categoryVal, listItem) {
 }
 
 function hideItem(listItem) {
-    listItem.style.display = 'none';
+    listItem.style.opacity= 0;
+    listItem.style.marginTop = 0;
+    listItem.style.marginBottom = 0;
+    listItem.style.paddingTop = 0;
+    listItem.style.paddingBottom = 0;
+    listItem.style.height = 0;
+    setTimeout(function(){ 
+        listItem.style.display = 'none';
+    }, 250);
+
+    
 }
 
 function searchdb(item) {
@@ -78,7 +88,6 @@ function searchdb(item) {
         })
 }
 function populateSearch(item) {
-    console.log(item);
     a = document.createElement("div");
     a.setAttribute("class", "card");
     a.setAttribute("id", "search-item");
@@ -101,10 +110,12 @@ function populateSearch(item) {
     a.appendChild(b);
 
     searchSuggestion.appendChild(a);
+
+    
     
 }
 
-function populateShoppingList(itemDat) {
+function populateShoppingList(itemDat, animate) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body");
     a.setAttribute("id", "shopping-list-item");
@@ -123,8 +134,30 @@ function populateShoppingList(itemDat) {
     a.appendChild(itemName);
     a.appendChild(c);
 
+    marginT = a.style.marginTop;
+    marginB = a.style.marginBottom;
+    paddingT = a.style.paddingTop;
+    paddingB = a.style.paddingBottom;
+    height = a.style.height;
+
+    if (animate == true) {
+        a.style.opacity= 0;
+        a.style.marginTop = 0;
+        a.style.marginBottom = 0;
+        a.style.paddingTop = 0;
+        a.style.paddingBottom = 0;
+        a.style.height = 0;
+    }
 
     shoppingListContainer.appendChild(a);
+    setTimeout(function(){ 
+        a.style.opacity= 100;
+        a.style.marginTop = marginT;
+        a.style.marginBottom = marginB;
+        a.style.paddingTop = paddingT;
+        a.style.paddingBottom = paddingB;
+        a.style.height = height;
+    }, 0);
     
 }
 
@@ -137,6 +170,5 @@ function displayShoppingList() {
             })
 
         })
-    // shoppingListHeader.innerHTML = "Shopping List(" + count + ")";
 }
 displayShoppingList();
