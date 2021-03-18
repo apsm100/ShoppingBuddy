@@ -9,20 +9,22 @@ var searchSuggestion = document.getElementById("suggestions");
 var shoppingListContainer = document.getElementById("shopping-list");
 var shoppingListHeader = document.getElementById("shopping-list-header");
 
-
+var addToShoppingListContainer = document.getElementById("addto-shopping-list");
 function searchTyping() {
     if (itemNameInput.value == ""){
         searchSuggestion.innerHTML = "";
     } else {
         searchdb(itemNameInput.value);
     }
-    
+
 }
 function suggestionClick(suggestion, category) {
     itemNameInput.value = suggestion;
     categoryInput.value = category;
     quantityInput.value = 1;
     searchSuggestion.innerHTML = "";
+ 
+    itemNameInput.focus();
     
 }
 
@@ -43,6 +45,7 @@ function addItem() {
     itemNameInput.value = "";
     categoryInput.value = "";
     quantityInput.value = "";
+
     itemNameInput.focus();
 }
 
@@ -82,6 +85,7 @@ function searchdb(item) {
                 //do something with the data
                 if (doc.data().query.toUpperCase().indexOf(item.toUpperCase()) > -1) {
                     populateSearch(doc.data());
+                    
                   }
                 
             })
@@ -150,6 +154,8 @@ function populateShoppingList(itemDat, animate) {
     }
 
     shoppingListContainer.appendChild(a);
+    
+
     setTimeout(function(){ 
         a.style.opacity= 100;
         a.style.marginTop = marginT;
