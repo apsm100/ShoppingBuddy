@@ -23,37 +23,43 @@ function suggestionClick(suggestion, category) {
     categoryInput.value = category;
     quantityInput.value = 1;
     searchSuggestion.innerHTML = "";
-    // addShoppingList(suggestion, category);
     
 }
 
-function addShoppingList() {
+function addItem() {
     itemVal = itemNameInput.value;
     categoryVal = categoryInput.value;
     quantityVal = quantityInput.value;
-    
-    itemNameInput.value = "";
-    categoryInput.value = "";
-    quantityInput.value = "";
 
     var shoppingList = db.collection("shoppingList");
-
-    shoppingList.add({
+    item = {
         item: itemVal,
         category: categoryVal,
         quantity: quantityVal,
-    });
-    displayShoppingList();
+    }
+    shoppingList.add(item);
+    populateShoppingList(item);
+
+    itemNameInput.value = "";
+    categoryInput.value = "";
+    quantityInput.value = "";
+    itemNameInput.focus();
 }
 
-function deleteItem (itemVal, categoryVal) {
+function deleteItem (itemVal, categoryVal, listItem) {
+    
     var shoppingListItem = db.collection('shoppingList').where('item','==',itemVal).where('category','==',categoryVal);
     shoppingListItem.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           doc.ref.delete();
-          displayShoppingList();
         });
       });
+      hideItem(listItem);
+      
+}
+
+function hideItem(listItem) {
+    listItem.style.display = 'none';
 }
 
 function searchdb(item) {
@@ -72,6 +78,7 @@ function searchdb(item) {
         })
 }
 function populateSearch(item) {
+    console.log(item);
     a = document.createElement("div");
     a.setAttribute("class", "card");
     a.setAttribute("id", "search-item");
@@ -101,7 +108,7 @@ function populateShoppingList(itemDat) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body");
     a.setAttribute("id", "shopping-list-item");
-    a.setAttribute("onclick", "deleteItem('" + itemDat.item + "', '" + itemDat.category + "')");
+    a.setAttribute("onclick", "deleteItem('" + itemDat.item + "', '" + itemDat.category + "', this)");
 
 
     itemName = document.createElement("span");
