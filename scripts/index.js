@@ -10,11 +10,34 @@ var shoppingListContainer = document.getElementById("shopping-list");
 var shoppingListHeader = document.getElementById("shopping-list-header");
 
 var addToShoppingListContainer = document.getElementById("addto-shopping-list");
+var addItemButton = document.getElementById("add-item-button");
+
+var modalOverlay = document.getElementById("modal-overlay");
+
+function showAddToModal() {
+    modalOverlay.style.display = "block";
+    itemNameInput.focus();
+    setTimeout(function(){ 
+        modalOverlay.style.opacity = 1; 
+    }, 0);
+}
+
+window.onclick = function(event) {
+    if (event.target == modalOverlay) {
+      modalOverlay.style.opacity = 0;
+      setTimeout(function(){ 
+        modalOverlay.style.display = "none";
+    }, 250);
+    }
+  }
+
 function searchTyping() {
     if (itemNameInput.value == ""){
         searchSuggestion.innerHTML = "";
+        addItemButton.setAttribute("class", "btn btn-primary disabled");
     } else {
         searchdb(itemNameInput.value);
+        addItemButton.setAttribute("class", "btn btn-primary");
     }
 }
 
@@ -44,8 +67,12 @@ function addItem() {
     itemNameInput.value = "";
     categoryInput.value = "";
     quantityInput.value = "";
-
+    addItemButton.setAttribute("class", "btn btn-primary disabled");
     itemNameInput.focus();
+    modalOverlay.style.backgroundColor = "rgba(0,0,0,0.0)";
+    setTimeout(function(){ 
+        modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
+    }, 500);
 }
 
 function deleteItem (itemVal, categoryVal, listItem) {

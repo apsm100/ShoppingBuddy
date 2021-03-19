@@ -22,10 +22,25 @@
     border-top:rgba(29, 18, 18, 0.1);
 }
 
-#addto-shopping-list  {
+#modal-overlay  {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 64px;
+    width: 100%; 
+    height: 100%; 
+    overflow:auto;
+    background-color: rgba(0,0,0,0.2); 
+    opacity: 0;
+}
+
+#addto-shopping-list {
     width: 250px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 5px;
 }
 
 #search-item {
@@ -46,8 +61,19 @@
 }
 
 #suggestions {
-    max-height: 175px;
+    max-height: 250px;
     overflow-y: scroll;
+}
+
+#add-button {
+    display: block;
+    text-align:center;
+    font-size: 250%;
+}
+
+#add-button:hover {
+    color: #ee3b24;
+    cursor: pointer;
 }
 
 #suggestions::-webkit-scrollbar {
@@ -56,6 +82,7 @@
 
 #add-item-button {
     float:right;
+    margin-top:6px;
 }
 
 #item-name-input, #category-name-input {
@@ -70,8 +97,17 @@
     max-width:3em;
 }
 input {
-    border:hidden;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    border:1px solid white;
 }
+
+input:focus{
+    outline: none;
+    border: 1px solid gainsboro;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -80,6 +116,7 @@ input {
     grid-template-areas:
       "menu1 menu2";
   }
+
 .menu1 { grid-area: menu1; }
 .menu2 { grid-area: menu2; }
 

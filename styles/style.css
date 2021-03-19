@@ -35,10 +35,6 @@
     user-select: none;
 }
 
-.container-fluid::-webkit-scrollbar {
-    display: none;
-}
-
 .logo {
     height: 100%;
     width: 100%;
@@ -84,8 +80,18 @@
 svg:hover {
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
 }
+
 * {
     transition: 0.25s;
     transition-timing-function: ease-out;
-
 }
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+clears the ‘X’ from Chrome
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
