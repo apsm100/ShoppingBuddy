@@ -45,6 +45,15 @@
     font-style:italic;
 }
 
+#suggestions {
+    max-height: 175px;
+    overflow-y: scroll;
+}
+
+#suggestions::-webkit-scrollbar {
+    display: none;
+}
+
 #add-item-button {
     float:right;
 }

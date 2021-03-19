@@ -16,8 +16,8 @@ function searchTyping() {
     } else {
         searchdb(itemNameInput.value);
     }
-
 }
+
 function suggestionClick(suggestion, category) {
     itemNameInput.value = suggestion;
     categoryInput.value = category;
@@ -25,7 +25,6 @@ function suggestionClick(suggestion, category) {
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
-    
 }
 
 function addItem() {
@@ -50,7 +49,6 @@ function addItem() {
 }
 
 function deleteItem (itemVal, categoryVal, listItem) {
-    
     var shoppingListItem = db.collection('shoppingList').where('item','==',itemVal).where('category','==',categoryVal);
     shoppingListItem.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -58,7 +56,6 @@ function deleteItem (itemVal, categoryVal, listItem) {
         });
       });
       hideItem(listItem);
-      
 }
 
 function hideItem(listItem) {
@@ -71,8 +68,6 @@ function hideItem(listItem) {
     setTimeout(function(){ 
         listItem.style.display = 'none';
     }, 250);
-
-    
 }
 
 function searchdb(item) {
@@ -91,6 +86,7 @@ function searchdb(item) {
             })
         })
 }
+
 function populateSearch(item) {
     a = document.createElement("div");
     a.setAttribute("class", "card");
@@ -114,9 +110,6 @@ function populateSearch(item) {
     a.appendChild(b);
 
     searchSuggestion.appendChild(a);
-
-    
-    
 }
 
 function populateShoppingList(itemDat, animate) {
@@ -164,7 +157,6 @@ function populateShoppingList(itemDat, animate) {
         a.style.paddingBottom = paddingB;
         a.style.height = height;
     }, 0);
-    
 }
 
 function displayShoppingList() {
