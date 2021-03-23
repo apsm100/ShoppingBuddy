@@ -20,28 +20,11 @@
     <link rel="stylesheet" href="styles/style.css" />
     <!-- Optional styles and scripts of your own -->
     <style>
-      .container-fluid {
-        padding: 50px;
-      }
-      .title {
-        margin-bottom: 3rem;
-        border: 0px;
-        background-color: gray;
-        background-image: url("images/shopping-banner.jpg");
-        height: 15rem;
-        color: honeydew;
-        text-shadow: 0 0 10px black;
-      }
-      .form-text {
-        margin-bottom: 2rem;
-      }
-      .padder {
-        padding: 1rem;
-      }
-      .middle {
-        margin: auto 0;
-      }
-      .topper {
+      .image {
+        border-radius: 50%;
+        border: 5px solid #555;
+        width: 10rem;
+        height: 10rem;
         margin-top: 5rem;
       }
       .colored {
@@ -61,66 +44,113 @@
       </div>
     </div>
 
-    <div class="container-fluid colored" id="content">
-      <div class="card title">
-        <div class="card-body topper">
-          <h2 class="card-title text-center">Become A Private Shopper Today</h2>
-          <h5 class="card-subtitle mb-2 text-center padder">
-            Fill Out This Form To Apply.
-          </h5>
+    <div class="container-fluid colored">
+      <div class="text-center">
+        <img src="images/profile-icon-png-898.png" class="image" alt="..." />
+      </div>
+      <br /><br />
+      <div class="container">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Name:</label>
+          <div class="col-sm-10">
+            <input
+              id="name"
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="Buddy Holly"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Change Name:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="changeName" />
+          </div>
         </div>
       </div>
-      <form>
-        <label for="firstName" class="form-label">First Name</label>
-        <input
-          type="text"
-          id="firstName"
-          class="form-control"
-          aria-describedby="passwordHelpBlock"
-          required
-        />
-        <div id="passwordHelpBlock" class="form-text">
-          Enter Your Legal First Name
+      <br /><br />
+      <div class="container">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Email:</label
+          >
+          <div class="col-sm-10">
+            <input
+              id="email"
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="buddyholly@gmail.com"
+            />
+          </div>
         </div>
-        <label for="lastName" class="form-label">Last Name</label>
-        <input
-          type="text"
-          id="lastName"
-          class="form-control"
-          aria-describedby="passwordHelpBlock"
-          required
-        />
-        <div id="passwordHelpBlock" class="form-text">
-          Enter Your Legal Last Name
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >Change Email:</label
+          >
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="changeEmail" />
+          </div>
         </div>
-        <label for="emailAddress" class="form-label">Email Address</label>
-        <input
-          type="email"
-          id="emailAddress"
-          class="form-control"
-          aria-describedby="passwordHelpBlock"
-          required
-        />
-        <div id="passwordHelpBlock" class="form-text">
-          Enter Your Primary Email Address
+      </div>
+      <br /><br />
+      <div class="container">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Password:</label
+          >
+          <div class="col-sm-10">
+            <input
+              id="password"
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="***********"
+            />
+          </div>
         </div>
-        <label for="inputPassword5" class="form-label">Phone Number</label>
-        <input
-          type="number"
-          id="phoneNumber"
-          class="form-control"
-          aria-describedby="passwordHelpBlock"
-          required
-        />
-        <div id="passwordHelpBlock" class="form-text">
-          Enter Your Current Phone Number.
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >New Password:</label
+          >
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="changePassword" />
+          </div>
         </div>
-        <div class="d-grid gap-2 col-2 mx-auto">
-          <button class="btn btn-primary" type="submit" onclick="getInfo()">
-            Submit
-          </button>
+        <br /><br />
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Rating:</label
+          >
+          <div class="col-sm-10">
+            <input
+              id="email"
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="★★★★✰"
+            />
+          </div>
         </div>
-      </form>
+      </div>
+
+      <br /><br />
+      <div class="text-center">
+        <button
+          type="button"
+          type="submit"
+          onclick="changeData()"
+          class="btn btn-primary"
+        >
+          Save Changes
+        </button>
+      </div>
+      <br /><br />
     </div>
 
     <div class="bottom-nav-bar">
@@ -278,27 +308,27 @@
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
     <script>
-      function getInfo() {
-        var firstName = document.getElementById("firstName").value;
-        var lastName = document.getElementById("lastName").value;
-        var emailAddress = document.getElementById("emailAddress").value;
-        var phoneNumber = document.getElementById("phoneNumber").value;
-        console.log(firstName);
-        var shoppers = db.collection("shoppers");
-        if (
-          firstName != "" &&
-          lastName != "" &&
-          emailAddress != "" &&
-          phoneNumber != ""
-        ) {
-          shoppers.add({
-            FirstName: firstName,
-            LastName: lastName,
-            EmailAddress: emailAddress,
-            PhoneNumber: phoneNumber,
-          });
-          document.getElementById("content").innerHTML =
-            "<div class='card border-success mb-3 text-center'><div class='card-header'>Sign-Up Success!</div><div class='card-body text-success'><h5 class='card-title padder'>Your Application Is Pending Review.</h5><a class='btn btn-primary' href='index.html' role='button'>Take me to the home page!</a></div>";
+      function changeData() {
+        if (document.getElementById("changeName").value != "") {
+          document
+            .getElementById("name")
+            .setAttribute("value", document.getElementById("changeName").value);
+        }
+        if (document.getElementById("changeEmail").value != "") {
+          document
+            .getElementById("email")
+            .setAttribute(
+              "value",
+              document.getElementById("changeEmail").value
+            );
+        }
+        if (document.getElementById("changePassword").value != "") {
+          document
+            .getElementById("password")
+            .setAttribute(
+              "value",
+              document.getElementById("changePassword").value
+            );
         }
       }
     </script>
