@@ -19,7 +19,24 @@
 
     <link rel="stylesheet" href="styles/style.css" />
     <!-- Optional styles and scripts of your own -->
-    <style></style>
+    <style>
+      .container-fluid {
+        padding: 50px;
+      }
+      .title {
+        margin-bottom: 3rem;
+        border: 0px;
+      }
+      .form-text {
+        margin-bottom: 2rem;
+      }
+      .padder {
+        padding: 1rem;
+      }
+      .middle {
+        margin: auto 0;
+      }
+    </style>
   </head>
 
   <body>
@@ -33,8 +50,66 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-      <!-- content -->
+    <div class="container-fluid" id="content">
+      <div class="card title">
+        <div class="card-body">
+          <h2 class="card-title text-center">Become A Private Shopper Today</h2>
+          <h5 class="card-subtitle mb-2 text-muted text-center padder">
+            Fill Out This Form To Apply.
+          </h5>
+        </div>
+      </div>
+      <form>
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+          required
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          Enter Your Legal First Name
+        </div>
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+          required
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          Enter Your Legal Last Name
+        </div>
+        <label for="emailAddress" class="form-label">Email Address</label>
+        <input
+          type="email"
+          id="emailAddress"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+          required
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          Enter Your Primary Email Address
+        </div>
+        <label for="inputPassword5" class="form-label">Phone Number</label>
+        <input
+          type="number"
+          id="phoneNumber"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+          required
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          Enter Your Current Phone Number.
+        </div>
+        <div class="d-grid gap-2 col-2 mx-auto">
+          <button class="btn btn-primary" type="submit" onclick="getInfo()">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
 
     <div class="bottom-nav-bar">
@@ -184,9 +259,37 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="scripts/firebase_api.js"></script>
 
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
+    <script>
+      function getInfo() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var emailAddress = document.getElementById("emailAddress").value;
+        var phoneNumber = document.getElementById("phoneNumber").value;
+        console.log(firstName);
+        var shoppers = db.collection("shoppers");
+        if (
+          firstName != "" &&
+          lastName != "" &&
+          emailAddress != "" &&
+          phoneNumber != ""
+        ) {
+          shoppers.add({
+            FirstName: firstName,
+            LastName: lastName,
+            EmailAddress: emailAddress,
+            PhoneNumber: phoneNumber,
+          });
+          document.getElementById("content").innerHTML =
+            "<div class='card border-success mb-3 text-center'><div class='card-header'>Sign-Up Success!</div><div class='card-body text-success'><h5 class='card-title padder'>Your Application Is Pending Review.</h5><a class='btn btn-primary' href='index.html' role='button'>Take me to the home page!</a></div>";
+        }
+      }
+    </script>
   </body>
 </html>

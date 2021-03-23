@@ -1,173 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>shoppingbuddy</title>
+    <meta name="group18" content="shoppingbuddy" />
 
-<head>
-  <meta charset="utf-8" />
-  <title>shoppingbuddy</title>
-  <meta name="group18" content="shoppingbuddy" />
+    <!-- Bootstrap for Mobile-first, and JQuery -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
 
-  <!-- Bootstrap for Mobile-first, and JQuery -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- Optional styles and scripts of your own -->
+    <style>
+      .profile-icon {
+        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+          brightness(104%) contrast(97%);
+      }
+    </style>
+  </head>
 
-  <link rel="stylesheet" href="styles/style.css" />
-  <!-- Optional styles and scripts of your own -->
-  <style>
-    .profile-icon {
-      filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
-    }
-  </style>
-</head>
+  <body>
+    <!-------------------------------------->
+    <!-- The following is HTML for layout -->
+    <!-------------------------------------->
 
-<body>
-  <!-------------------------------------->
-  <!-- The following is HTML for layout -->
-  <!-------------------------------------->
-
-  <div class="top-nav-bar">
-    <div class="logo">
-      <h1>shoppingbuddy</h1>
-    </div>
-  </div>
-  <br /><br /><br /><br /><br />
-  <div class="container-fluid">
-    <nav class="navbar navbar-light bg-danger">
-      <form class="container-fluid justify-content-start">
-        <button class="btn btn-outline-success me-2 bg-light" type="button">
-          Back To Main Page
-        </button>
-        <div class="text-center">
-          <a class="navbar-brand fs-2 text-center">Profile</a>
-        </div>
-      </form>
-    </nav>
-    <br /><br />
-    <div class="text-center">
-      <img src="https://www.rollingstone.com/wp-content/uploads/2018/06/rs-707-rectangle.jpg?resize=1800,1200&w=1800"
-        class="rounded img-thumbnail p-3" style="width: 400px" alt="..." />
-    </div>
-    <br /><br />
-    <div class="container">
-      <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Name:</label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Buddy Holly" />
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label class="col-sm-2 col-form-label">Change Name:</label>
-        <div class="col-sm-10">
-          <input type="" class="form-control" id="" />
-        </div>
+    <div class="top-nav-bar">
+      <div class="logo">
+        <h1>shoppingbuddy</h1>
       </div>
     </div>
-    <br /><br />
-    <div class="container">
-      <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="buddyholly@gmail.com" />
+    <br /><br /><br /><br /><br />
+    <div class="container-fluid">
+      <div class="text-center">
+        <img
+          src="https://www.rollingstone.com/wp-content/uploads/2018/06/rs-707-rectangle.jpg?resize=1800,1200&w=1800"
+          class="rounded img-thumbnail p-3"
+          style="width: 400px"
+          alt="..."
+        />
+      </div>
+      <br /><br />
+      <div class="container">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Name:</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="Buddy Holly"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Change Name:</label>
+          <div class="col-sm-10">
+            <input type="" class="form-control" id="" />
+          </div>
         </div>
       </div>
-      <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Change Email:</label>
-        <div class="col-sm-10">
-          <input type="" class="form-control" id="" />
+      <br /><br />
+      <div class="container">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Email:</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="buddyholly@gmail.com"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >Change Email:</label
+          >
+          <div class="col-sm-10">
+            <input type="" class="form-control" id="" />
+          </div>
         </div>
       </div>
+      <br /><br />
+      <div class="container">
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Password:</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="***********"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"
+            >New Password:</label
+          >
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" />
+          </div>
+        </div>
+      </div>
+      <br /><br />
+      <div class="text-center">
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+      <br /><br />
     </div>
-    <br /><br />
-    <div class="container">
-      <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Password:</label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="***********" />
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">New Password:</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword" />
-        </div>
-      </div>
-    </div>
-    <br /><br />
-    <div class="text-center">
-      <button type="button" class="btn btn-primary">Save Changes</button>
-    </div>
-    <br /><br />
-  </div>
 
-  <div class="bottom-nav-bar">
-    <div class="mb1">
-      <a href="index.html">
-        <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+    <div class="bottom-nav-bar">
+      <div class="mb1">
+        <a href="index.html">
+          <svg
+            class="search-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+              stroke="#111111"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M21 21L16.65 16.65"
+              stroke="#111111"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="mb2">
+        <svg
+          class="convo-icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
-            d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-            stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M21 21L16.65 16.65" stroke="#111111" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
+            d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
+            stroke="#111111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
-      </a>
-    </div>
-    <div class="mb2">
-      <svg class="convo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
-          stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </div>
-    <div class="mb3">
-      <svg class="cart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"
-          stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path
-          d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"
-          stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path
-          d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
-          stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </div>
-    <div class="mb4">
-      <svg class="order-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
-          stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M3 6H21" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path
-          d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10"
-          stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </div>
-    <div class="mb5">
-      <a href="profile.html">
-        <svg class="profile-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+      </div>
+      <div class="mb3">
+        <svg
+          class="cart-icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
-            d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
-            stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"
+            stroke="#111111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
           <path
-            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
-            stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"
+            stroke="#111111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
+            stroke="#111111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
-      </a>
+      </div>
+      <div class="mb4">
+        <svg
+          class="order-icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
+            stroke="#111111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M3 6H21"
+            stroke="#111111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10"
+            stroke="#111111"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <div class="mb5">
+        <a href="profile.html">
+          <svg
+            class="profile-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+              stroke="#111111"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+              stroke="#111111"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
-  </div>
-  <!----------------------------------------------->
-  <!-- JS: Boostrap, Firebase, API related    -->
-  <!----------------------------------------------->
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, Firebase, API related    -->
+    <!----------------------------------------------->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
 
-  <!--------------------------------------------------------------------->
-  <!-- JS files: Your own JavaScript functions included here    -->
-  <!--------------------------------------------------------------------->
-</body>
-
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+  </body>
 </html>
