@@ -10,6 +10,28 @@
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
+.containerone {
+  display: grid;
+  grid-template-rows: 2fr 1fr 4fr 1fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin-top: 64px;
+  margin-bottom: 64px;
+  background-image: url(/images/background.jpg);
+}
+.Header {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  text-align: center;
+}
+.container {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+}
+#login {
+  max-height: 75px;
+  max-width: 322px;
+}
+
 .bottom-nav-bar {
   position: absolute;
   bottom: 0;
