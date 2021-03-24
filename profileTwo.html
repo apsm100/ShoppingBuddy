@@ -16,15 +16,14 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-1.7.1.min.js"
+    ></script>
 
     <link rel="stylesheet" href="styles/style.css" />
     <!-- Optional styles and scripts of your own -->
-    <style>
-      .profile-icon {
-        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
-          brightness(104%) contrast(97%);
-      }
-    </style>
+    <style></style>
   </head>
 
   <body>
@@ -37,91 +36,41 @@
         <h1>shoppingbuddy</h1>
       </div>
     </div>
+
     <div class="container-fluid">
-      <div class="text-center">
-        <img
-          src="https://www.rollingstone.com/wp-content/uploads/2018/06/rs-707-rectangle.jpg?resize=1800,1200&w=1800"
-          class="rounded img-thumbnail p-3"
-          style="width: 400px"
-          alt="..."
-        />
+      <div class="list-group">
+        <a
+          href="#"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Email</h5>
+          </div>
+          <p class="mb-1"><span id="Email-goes-here"></span></p>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Name</h5>
+          </div>
+          <p class="mb-1"><span id="Name-goes-here"></span></p>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Address</h5>
+          </div>
+          <p class="mb-1"><span id="Address-goes-here"></span></p>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Delivery Instructions</h5>
+          </div>
+          <p class="mb-1">
+            <span id="DeliveryInstructions-goes-here"></span>
+          </p>
+        </a>
       </div>
-      <br /><br />
-      <div class="container">
-        <div class="mb-3 row">
-          <label for="staticEmail" class="col-sm-2 col-form-label">Name:</label>
-          <div class="col-sm-10">
-            <input
-              type="text"
-              readonly
-              class="form-control-plaintext"
-              id="staticEmail"
-              value="Buddy Holly"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label class="col-sm-2 col-form-label">Change Name:</label>
-          <div class="col-sm-10">
-            <input type="" class="form-control" id="" />
-          </div>
-        </div>
-      </div>
-      <br /><br />
-      <div class="container">
-        <div class="mb-3 row">
-          <label for="staticEmail" class="col-sm-2 col-form-label"
-            >Email:</label
-          >
-          <div class="col-sm-10">
-            <input
-              type="text"
-              readonly
-              class="form-control-plaintext"
-              id="staticEmail"
-              value="buddyholly@gmail.com"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="inputPassword" class="col-sm-2 col-form-label"
-            >Change Email:</label
-          >
-          <div class="col-sm-10">
-            <input type="" class="form-control" id="" />
-          </div>
-        </div>
-      </div>
-      <br /><br />
-      <div class="container">
-        <div class="mb-3 row">
-          <label for="staticEmail" class="col-sm-2 col-form-label"
-            >Password:</label
-          >
-          <div class="col-sm-10">
-            <input
-              type="text"
-              readonly
-              class="form-control-plaintext"
-              id="staticEmail"
-              value="***********"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="inputPassword" class="col-sm-2 col-form-label"
-            >New Password:</label
-          >
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" />
-          </div>
-        </div>
-      </div>
-      <br /><br />
-      <div class="text-center">
-        <button type="button" class="btn btn-primary">Save Changes</button>
-      </div>
-      <br /><br />
+      <a href="userInfo.html" class="btn btn-lg btn-primary">Change Profile</a>
     </div>
 
     <div class="bottom-nav-bar">
@@ -271,7 +220,12 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="scripts/firebase_api.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="scripts/profile.js"></script>
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
