@@ -20,9 +20,15 @@
     <link rel="stylesheet" href="styles/style.css" />
     <!-- Optional styles and scripts of your own -->
     <style>
-      .profile-icon {
-        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
-          brightness(104%) contrast(97%);
+      .image {
+        border-radius: 50%;
+        border: 5px solid #555;
+        width: 10rem;
+        height: 10rem;
+        margin-top: 5rem;
+      }
+      .colored {
+        background: linear-gradient(to bottom, #e4e6e7 0%, #e8f7ff 100%);
       }
     </style>
   </head>
@@ -37,15 +43,10 @@
         <h1>shoppingbuddy</h1>
       </div>
     </div>
-    <br /><br /><br /><br /><br />
-    <div class="container-fluid">
+
+    <div class="container-fluid colored">
       <div class="text-center">
-        <img
-          src="https://www.rollingstone.com/wp-content/uploads/2018/06/rs-707-rectangle.jpg?resize=1800,1200&w=1800"
-          class="rounded img-thumbnail p-3"
-          style="width: 400px"
-          alt="..."
-        />
+        <img src="images/profile-icon-png-898.png" class="image" alt="..." />
       </div>
       <br /><br />
       <div class="container">
@@ -53,6 +54,7 @@
           <label for="staticEmail" class="col-sm-2 col-form-label">Name:</label>
           <div class="col-sm-10">
             <input
+              id="name"
               type="text"
               readonly
               class="form-control-plaintext"
@@ -64,7 +66,7 @@
         <div class="mb-3 row">
           <label class="col-sm-2 col-form-label">Change Name:</label>
           <div class="col-sm-10">
-            <input type="" class="form-control" id="" />
+            <input type="text" class="form-control" id="changeName" />
           </div>
         </div>
       </div>
@@ -76,6 +78,7 @@
           >
           <div class="col-sm-10">
             <input
+              id="email"
               type="text"
               readonly
               class="form-control-plaintext"
@@ -89,7 +92,7 @@
             >Change Email:</label
           >
           <div class="col-sm-10">
-            <input type="" class="form-control" id="" />
+            <input type="text" class="form-control" id="changeEmail" />
           </div>
         </div>
       </div>
@@ -101,6 +104,7 @@
           >
           <div class="col-sm-10">
             <input
+              id="password"
               type="text"
               readonly
               class="form-control-plaintext"
@@ -114,13 +118,37 @@
             >New Password:</label
           >
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" />
+            <input type="password" class="form-control" id="changePassword" />
+          </div>
+        </div>
+        <br /><br />
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label"
+            >Rating:</label
+          >
+          <div class="col-sm-10">
+            <input
+              id="email"
+              type="text"
+              readonly
+              class="form-control-plaintext"
+              id="staticEmail"
+              value="★★★★✰"
+            />
           </div>
         </div>
       </div>
+
       <br /><br />
       <div class="text-center">
-        <button type="button" class="btn btn-primary">Save Changes</button>
+        <button
+          type="button"
+          type="submit"
+          onclick="changeData()"
+          class="btn btn-primary"
+        >
+          Save Changes
+        </button>
       </div>
       <br /><br />
     </div>
@@ -272,9 +300,37 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="scripts/firebase_api.js"></script>
 
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
+    <script>
+      function changeData() {
+        if (document.getElementById("changeName").value != "") {
+          document
+            .getElementById("name")
+            .setAttribute("value", document.getElementById("changeName").value);
+        }
+        if (document.getElementById("changeEmail").value != "") {
+          document
+            .getElementById("email")
+            .setAttribute(
+              "value",
+              document.getElementById("changeEmail").value
+            );
+        }
+        if (document.getElementById("changePassword").value != "") {
+          document
+            .getElementById("password")
+            .setAttribute(
+              "value",
+              document.getElementById("changePassword").value
+            );
+        }
+      }
+    </script>
   </body>
 </html>

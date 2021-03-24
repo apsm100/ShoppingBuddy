@@ -1,0 +1,144 @@
+.card {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.search-icon {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+    brightness(104%) contrast(97%);
+}
+
+#shopping-list-header {
+  text-align: center;
+  margin-top: 2em;
+}
+
+#shopping-list {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#shopping-list-item {
+  border-top: rgba(29, 18, 18, 0.1);
+}
+
+#modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 64px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
+#addto-shopping-list {
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 5px;
+}
+
+#search-item {
+  margin-top: 0;
+  margin-bottom: 1em;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#search-item:hover,
+#shopping-list-item:hover {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
+#search-item-category,
+#item-category {
+  float: right;
+  font-style: italic;
+}
+
+#suggestions {
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+#add-button {
+  display: block;
+  text-align: center;
+  font-size: 250%;
+}
+
+#add-button:hover {
+  color: #ee3b24;
+  cursor: pointer;
+}
+
+#suggestions::-webkit-scrollbar {
+  display: none;
+}
+
+#add-item-button {
+  float: right;
+  margin-top: 6px;
+}
+
+#item-name-input,
+#category-name-input {
+  display: block;
+  width: 100%;
+}
+
+#category-name-input {
+  font-style: italic;
+}
+#quantity-input {
+  max-width: 3em;
+}
+input {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border: 1px solid white;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid gainsboro;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  gap: 15px;
+  grid-template-areas: "menu1 menu2";
+}
+
+.menu1 {
+  grid-area: menu1;
+}
+.menu2 {
+  grid-area: menu2;
+}
+
+@media screen and (max-width: 800px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "menu1"
+      "menu2";
+  }
+  #shopping-list {
+    width: 80%;
+  }
+}
+.work {
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+}
