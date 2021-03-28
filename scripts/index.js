@@ -54,8 +54,8 @@ function addItem() {
     itemVal = itemNameInput.value;
     categoryVal = categoryInput.value;
     quantityVal = quantityInput.value;
-
-    var shoppingList = db.collection("shoppingList");
+    var user = firebase.auth().currentUser;
+    var shoppingList = db.collection("users/" + user.uid + "/shoppingList");
     item = {
         item: itemVal,
         category: categoryVal,
@@ -76,7 +76,9 @@ function addItem() {
 }
 
 function deleteItem (itemVal, categoryVal, listItem) {
-    var shoppingListItem = db.collection('shoppingList').where('item','==',itemVal).where('category','==',categoryVal);
+    var user = firebase.auth().currentUser;
+    var shoppingListItem = db.collection("users/" + user.uid + "/shoppingList").where('item','==',itemVal).where('category','==',categoryVal);
+    shoppingListItem.where('item','==',itemVal).where('category','==',categoryVal);
     shoppingListItem.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           doc.ref.delete();
@@ -103,7 +105,6 @@ function searchdb(item) {
         .then(function (snap) {
             searchSuggestion.innerHTML = "";
             snap.forEach(function (doc) {
-                // console.log(doc.data());
                 //do something with the data
                 if (doc.data().query.toUpperCase().indexOf(item.toUpperCase()) > -1) {
                     populateSearch(doc.data());
@@ -143,6 +144,7 @@ function populateShoppingList(itemDat, animate) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body");
     a.setAttribute("id", "shopping-list-item");
+
     a.setAttribute("onclick", "deleteItem('" + itemDat.item + "', '" + itemDat.category + "', this)");
 
 
@@ -188,8 +190,10 @@ function populateShoppingList(itemDat, animate) {
 
 
 function displayShoppingList() {
+    var user = firebase.auth().currentUser;
+    var shoppingList = db.collection("users/" + user.uid + "/shoppingList");
     shoppingListContainer.innerHTML = "";
-    db.collection("shoppingList").get()
+    shoppingList.get()
         .then(function (snap) {
             snap.forEach(function (doc) {
                 populateShoppingList(doc.data());
@@ -197,17 +201,27 @@ function displayShoppingList() {
 
         })
 }
-displayShoppingList();
+
+
+function isLoggedIn() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            displayShoppingList();
+        } else {
+            window.location.href = 'login.html';
+        }
+      });
+}
+isLoggedIn();
+
 
 function sayHello(){
     firebase.auth().onAuthStateChanged(function(somebody){
         if(somebody){
-            console.log(somebody.uid)
             db.collection("users")
             .doc(somebody.uid)
             .get()
             .then(function(doc){
-                console.log(doc.data().name);
                 var n = doc.data().name;
                 $("#Name-goes-here").text(n + "'s ");
             })
@@ -215,3 +229,4 @@ function sayHello(){
     })
 }
 sayHello();
+//firebase.auth().signOut()         USE THIS TO LOG OUT USER.
