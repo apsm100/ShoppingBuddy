@@ -14,6 +14,9 @@ var addItemButton = document.getElementById("add-item-button");
 
 var modalOverlay = document.getElementById("modal-overlay");
 
+var search = JSON.parse(searchJSON);
+search = search["search"];
+
 function showAddToModal() {
     modalOverlay.style.display = "block";
     itemNameInput.focus();
@@ -100,19 +103,14 @@ function hideItem(listItem) {
 }
 
 function searchdb(item) {
-    db.collection("search")
-        .get()
-        .then(function (snap) {
-            searchSuggestion.innerHTML = "";
-            snap.forEach(function (doc) {
-                //do something with the data
-                if (doc.data().query.toUpperCase().indexOf(item.toUpperCase()) > -1) {
-                    populateSearch(doc.data());
-                    
-                  }
-                
-            })
-        })
+    searchSuggestion.innerHTML = "";
+    for (var s in search) {
+        
+        var query = search[s].query;
+        if (query.toUpperCase().indexOf(item.toUpperCase()) > -1) {
+            populateSearch(search[s]);
+        }
+    }
 }
 
 function populateSearch(item) {
