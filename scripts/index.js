@@ -59,10 +59,12 @@ function addItem() {
     quantityVal = quantityInput.value;
     var user = firebase.auth().currentUser;
     var shoppingList = db.collection("users/" + user.uid + "/shoppingList");
+
     item = {
         item: itemVal,
         category: categoryVal,
         quantity: quantityVal,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }
     shoppingList.add(item);
     populateShoppingList(item, true);
@@ -78,13 +80,15 @@ function addItem() {
     }, 500);
 }
 
+
 function deleteItem (itemVal, categoryVal, listItem) {
     var user = firebase.auth().currentUser;
+
     var shoppingListItem = db.collection("users/" + user.uid + "/shoppingList").where('item','==',itemVal).where('category','==',categoryVal);
-    shoppingListItem.where('item','==',itemVal).where('category','==',categoryVal);
+
     shoppingListItem.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          doc.ref.delete();
+            doc.ref.delete();
         });
       });
       hideItem(listItem);
@@ -189,7 +193,8 @@ function populateShoppingList(itemDat, animate) {
 
 function displayShoppingList() {
     var user = firebase.auth().currentUser;
-    var shoppingList = db.collection("users/" + user.uid + "/shoppingList");
+    var shoppingList = db.collection("users/" + user.uid + "/shoppingList").orderBy('timestamp', "asc");
+
     shoppingListContainer.innerHTML = "";
     shoppingList.get()
         .then(function (snap) {
