@@ -134,6 +134,8 @@ input:focus {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+    padding-left:0px;
+    padding-right:0px;
     grid-template-areas:
       "menu1"
       "menu2";
