@@ -16,69 +16,40 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
-    <script
-      type="text/javascript"
-      src="http://code.jquery.com/jquery-1.7.1.min.js"
-    ></script>
 
     <link rel="stylesheet" href="styles/style.css" />
     <!-- Optional styles and scripts of your own -->
     <style>
-      .profile-icon {
-  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
-    brightness(104%) contrast(97%);
-}
-      .container-fluid {
-        margin-top: 24px;
+      .card-body{
+        margin: 2rem;
+       border: 0.2rem solid gainsboro;
+      }
+      .card{
+        margin: 2rem;
+        padding: 2rem;
+        background-color: rgb(248, 248, 248);
       }
     </style>
   </head>
 
-  <body>
+  <body onload="createList()">
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
 
     <div class="top-nav-bar">
       <div class="logo">
-        <h1>shoppingbuddy</h1>
+          <h1>shoppingbuddy</h1>
       </div>
     </div>
 
     <div class="container-fluid">
-      <div class="list-group">
-        <a
-          href="#"
-          class="list-group-item list-group-item-action"
-          aria-current="true"
-        >
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Email</h5>
-          </div>
-          <p class="mb-1"><span id="Email-goes-here"></span></p>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Name</h5>
-          </div>
-          <p class="mb-1"><span id="Name-goes-here"></span></p>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Address</h5>
-          </div>
-          <p class="mb-1"><span id="Address-goes-here"></span></p>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Delivery Instructions</h5>
-          </div>
-          <p class="mb-1">
-            <span id="DeliveryInstructions-goes-here"></span>
-          </p>
-        </a>
+      <div class="card marginbig">
+          <h1 class="card-title" style="text-align: center;">Review Online Order</h1>
       </div>
-      <a href="userInfo.html" class="btn btn-lg btn-primary">Change Profile</a>
+      <div class="content" id="theList">
+        This Should Not Be Visible.
+      </div>
     </div>
 
     <div class="bottom-nav-bar">
@@ -146,11 +117,16 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
     <script src="scripts/firebase_api.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-    <script src="scripts/profile.js"></script>
+
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
+    <script>
+      function createList() {
+        var content = localStorage.getItem("shopperList");
+        document.getElementById("theList").innerHTML = content;
+        console.log("test");
+      }
+    </script>
   </body>
 </html>

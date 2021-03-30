@@ -23,6 +23,7 @@ function showAddToModal() {
     setTimeout(function(){ 
         modalOverlay.style.opacity = 1; 
     }, 0);
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 window.onclick = function(event) {
@@ -32,6 +33,7 @@ window.onclick = function(event) {
         modalOverlay.style.display = "none";
     }, 250);
     }
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
   }
 
 function searchTyping() {
@@ -42,6 +44,7 @@ function searchTyping() {
         searchdb(itemNameInput.value);
         addItemButton.setAttribute("class", "btn btn-primary");
     }
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function suggestionClick(suggestion, category) {
@@ -51,6 +54,7 @@ function suggestionClick(suggestion, category) {
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function addItem() {
@@ -78,6 +82,7 @@ function addItem() {
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
     }, 500);
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 
@@ -92,6 +97,7 @@ function deleteItem (itemVal, categoryVal, listItem) {
         });
       });
       hideItem(listItem);
+      localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function hideItem(listItem) {
@@ -140,6 +146,9 @@ function populateSearch(item) {
     a.appendChild(b);
 
     searchSuggestion.appendChild(a);
+
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+    
 }
 
 function populateShoppingList(itemDat, animate) {
@@ -188,6 +197,7 @@ function populateShoppingList(itemDat, animate) {
         a.style.paddingBottom = paddingB;
         a.style.height = height;
     }, 0);
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 
@@ -232,4 +242,5 @@ function sayHello(){
     })
 }
 sayHello();
+console.log(localStorage);
 //firebase.auth().signOut()         USE THIS TO LOG OUT USER.
