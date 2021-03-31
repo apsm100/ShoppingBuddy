@@ -18,18 +18,8 @@
     />
 
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/cart.css" />
     <!-- Optional styles and scripts of your own -->
-    <style>
-      .card-body{
-        margin: 2rem;
-       border: 0.2rem solid gainsboro;
-      }
-      .card{
-        margin: 2rem;
-        padding: 2rem;
-        background-color: rgb(248, 248, 248);
-      }
-    </style>
   </head>
 
   <body onload="createList()">
@@ -117,16 +107,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
     <script src="scripts/firebase_api.js"></script>
+    <script src="scripts/cart.js"></script>
 
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
-    <script>
-      function createList() {
-        var content = localStorage.getItem("shopperList");
-        document.getElementById("theList").innerHTML = content;
-        console.log("test");
-      }
-    </script>
   </body>
 </html>

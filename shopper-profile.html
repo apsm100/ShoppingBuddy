@@ -18,19 +18,8 @@
     />
 
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/shopper-profile.css" />
     <!-- Optional styles and scripts of your own -->
-    <style>
-      .image {
-        border-radius: 50%;
-        border: 5px solid #555;
-        width: 10rem;
-        height: 10rem;
-        margin-top: 5rem;
-      }
-      .colored {
-        background: linear-gradient(to bottom, #e4e6e7 0%, #e8f7ff 100%);
-      }
-    </style>
   </head>
 
   <body>
@@ -218,34 +207,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
     <script src="scripts/firebase_api.js"></script>
+    <script src="scripts/shopper-profile.js"></script>
 
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
-    <script>
-      function changeData() {
-        if (document.getElementById("changeName").value != "") {
-          document
-            .getElementById("name")
-            .setAttribute("value", document.getElementById("changeName").value);
-        }
-        if (document.getElementById("changeEmail").value != "") {
-          document
-            .getElementById("email")
-            .setAttribute(
-              "value",
-              document.getElementById("changeEmail").value
-            );
-        }
-        if (document.getElementById("changePassword").value != "") {
-          document
-            .getElementById("password")
-            .setAttribute(
-              "value",
-              document.getElementById("changePassword").value
-            );
-        }
-      }
-    </script>
   </body>
 </html>
