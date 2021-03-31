@@ -1,0 +1,10 @@
+.image {
+  border-radius: 50%;
+  border: 5px solid #555;
+  width: 10rem;
+  height: 10rem;
+  margin-top: 5rem;
+}
+.colored {
+  background: linear-gradient(to bottom, #e4e6e7 0%, #e8f7ff 100%);
+}

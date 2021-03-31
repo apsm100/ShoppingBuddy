@@ -1,92 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>shoppingbuddy</title>
-    <meta name="group18" content="shoppingbuddy">
+    <meta name="group18" content="shoppingbuddy" />
 
     <!-- Bootstrap for Mobile-first, and JQuery -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
 
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/cart.css" />
     <!-- Optional styles and scripts of your own -->
+  </head>
 
-
-</head>
-
-<body>
-
+  <body onload="createList()">
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
 
     <div class="top-nav-bar">
-        <div class="logo">
-            <h1>shoppingbuddy</h1>
-        </div>
+      <div class="logo">
+          <h1>shoppingbuddy</h1>
+      </div>
     </div>
 
-    <div class="container-fluid colored">
-
-
-        <div class="card marginbig">
-            <div class="card-body bg-light">
-              <h1 class="card-title" style="text-align: center;">Thank you for logging with shoppingbuddy!</h5>
-            </div>
-          </div>
-
-          <div class="card marginbig bg-light">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="images/produce.jpg" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Browse Our Selection</h5>
-                  <p class="card-text">With all the items to fit all your needs.</p>
-                  <a href="index.html" class="btn btn-lg btn-primary">Browse Selection</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="row row-cols-1 row-cols-md-3 marginbig">
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/profile-icon-png-898.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">View Your Profile</h5>
-                  <p class="card-text">Makes changes to your profile.</p>
-                  <a href="profile.html" class="btn btn-lg btn-primary">Go To Profile</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/receipt.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">View Past Orders</h5>
-                  <p class="card-text">You can view your previous orders here.</p>
-                  <a href="#" class="btn btn-lg btn-primary">Go To Orders</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="images/shopper.png" class="card-img-top " alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Become A Shopper</h5>
-                  <p class="card-text">Start Helping Others In Need Today!</p>
-                  <a href="become-shopper.html" class="btn btn-lg btn-primary">Sign Up Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="container-fluid">
+      <div class="card marginbig">
+          <h1 class="card-title" style="text-align: center;">Review Online Order</h1>
+      </div>
+      <div class="content" id="theList">
+        This Should Not Be Visible.
+      </div>
     </div>
 
     <div class="bottom-nav-bar">
@@ -146,15 +99,18 @@
     <!-- JS: Boostrap, Firebase, API related    -->
     <!----------------------------------------------->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-        </script>
-        <script src="scripts/main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="scripts/firebase_api.js"></script>
+    <script src="scripts/cart.js"></script>
 
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
-
-</body>
-
+  </body>
 </html>

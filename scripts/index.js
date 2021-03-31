@@ -14,12 +14,16 @@ var addItemButton = document.getElementById("add-item-button");
 
 var modalOverlay = document.getElementById("modal-overlay");
 
+var search = JSON.parse(searchJSON);
+search = search["search"];
+
 function showAddToModal() {
     modalOverlay.style.display = "block";
     itemNameInput.focus();
     setTimeout(function(){ 
         modalOverlay.style.opacity = 1; 
     }, 0);
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 window.onclick = function(event) {
@@ -29,6 +33,7 @@ window.onclick = function(event) {
         modalOverlay.style.display = "none";
     }, 250);
     }
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
   }
 
 function searchTyping() {
@@ -39,6 +44,7 @@ function searchTyping() {
         searchdb(itemNameInput.value);
         addItemButton.setAttribute("class", "btn btn-primary");
     }
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function suggestionClick(suggestion, category) {
@@ -48,18 +54,21 @@ function suggestionClick(suggestion, category) {
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function addItem() {
     itemVal = itemNameInput.value;
     categoryVal = categoryInput.value;
     quantityVal = quantityInput.value;
+    var user = firebase.auth().currentUser;
+    var shoppingList = db.collection("users/" + user.uid + "/shoppingList");
 
-    var shoppingList = db.collection("shoppingList");
     item = {
         item: itemVal,
         category: categoryVal,
         quantity: quantityVal,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }
     shoppingList.add(item);
     populateShoppingList(item, true);
@@ -73,16 +82,22 @@ function addItem() {
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
     }, 500);
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
+
 function deleteItem (itemVal, categoryVal, listItem) {
-    var shoppingListItem = db.collection('shoppingList').where('item','==',itemVal).where('category','==',categoryVal);
+    var user = firebase.auth().currentUser;
+
+    var shoppingListItem = db.collection("users/" + user.uid + "/shoppingList").where('item','==',itemVal).where('category','==',categoryVal);
+
     shoppingListItem.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          doc.ref.delete();
+            doc.ref.delete();
         });
       });
       hideItem(listItem);
+      localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function hideItem(listItem) {
@@ -98,20 +113,14 @@ function hideItem(listItem) {
 }
 
 function searchdb(item) {
-    db.collection("search")
-        .get()
-        .then(function (snap) {
-            searchSuggestion.innerHTML = "";
-            snap.forEach(function (doc) {
-                // console.log(doc.data());
-                //do something with the data
-                if (doc.data().query.toUpperCase().indexOf(item.toUpperCase()) > -1) {
-                    populateSearch(doc.data());
-                    
-                  }
-                
-            })
-        })
+    searchSuggestion.innerHTML = "";
+    for (var s in search) {
+        
+        var query = search[s].query;
+        if (query.toUpperCase().indexOf(item.toUpperCase()) > -1) {
+            populateSearch(search[s]);
+        }
+    }
 }
 
 function populateSearch(item) {
@@ -137,12 +146,16 @@ function populateSearch(item) {
     a.appendChild(b);
 
     searchSuggestion.appendChild(a);
+
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+    
 }
 
 function populateShoppingList(itemDat, animate) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body");
     a.setAttribute("id", "shopping-list-item");
+
     a.setAttribute("onclick", "deleteItem('" + itemDat.item + "', '" + itemDat.category + "', this)");
 
 
@@ -184,12 +197,16 @@ function populateShoppingList(itemDat, animate) {
         a.style.paddingBottom = paddingB;
         a.style.height = height;
     }, 0);
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 
 function displayShoppingList() {
+    var user = firebase.auth().currentUser;
+    var shoppingList = db.collection("users/" + user.uid + "/shoppingList").orderBy('timestamp', "asc");
+
     shoppingListContainer.innerHTML = "";
-    db.collection("shoppingList").get()
+    shoppingList.get()
         .then(function (snap) {
             snap.forEach(function (doc) {
                 populateShoppingList(doc.data());
@@ -197,72 +214,33 @@ function displayShoppingList() {
 
         })
 }
-displayShoppingList();
+
+
+function isLoggedIn() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            displayShoppingList();
+        } else {
+            window.location.href = 'login.html';
+        }
+      });
+}
+isLoggedIn();
+
 
 function sayHello(){
     firebase.auth().onAuthStateChanged(function(somebody){
         if(somebody){
-            console.log(somebody.uid)
             db.collection("users")
             .doc(somebody.uid)
             .get()
             .then(function(doc){
-                console.log(doc.data().name);
                 var n = doc.data().name;
-                $("#Name-goes-here").text(n);
+                $("#Name-goes-here").text(n + "'s ");
             })
         }
     })
 }
 sayHello();
-
-function sayEmail(){
-    firebase.auth().onAuthStateChanged(function(somebody){
-        if(somebody){
-            console.log(somebody.uid)
-            db.collection("users")
-            .doc(somebody.uid)
-            .get()
-            .then(function(doc){
-                console.log(doc.data().email);
-                var n = doc.data().email;
-                $("#Email-goes-here").text(n);
-            })
-        }
-    })
-}
-sayEmail();
-
-function sayAddress(){
-    firebase.auth().onAuthStateChanged(function(somebody){
-        if(somebody){
-            console.log(somebody.uid)
-            db.collection("users")
-            .doc(somebody.uid)
-            .get()
-            .then(function(doc){
-                console.log(doc.data().address);
-                var n = doc.data().address;
-                $("#Address-goes-here").text(n);
-            })
-        }
-    })
-}
-sayAddress();
-
-function sayDeliveryInstructions(){
-    firebase.auth().onAuthStateChanged(function(somebody){
-        if(somebody){
-            console.log(somebody.uid)
-            db.collection("users")
-            .doc(somebody.uid)
-            .get()
-            .then(function(doc){
-                console.log(doc.data().deliveryInstructions);
-                var n = doc.data().deliveryInstructions;
-                $("#DeliveryInstructions-goes-here").text(n);
-            })
-        }
-    })
-}
-sayDeliveryInstructions();
+console.log(localStorage);
+//firebase.auth().signOut()         USE THIS TO LOG OUT USER.
