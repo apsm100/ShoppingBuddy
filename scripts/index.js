@@ -234,18 +234,17 @@ function isPrivateShopper() {
     var userInfo = db.collection("users").doc(user.uid);
 
     userInfo.get().then((doc) => {
-        compareEmail(doc.data().email);
+        redirect(doc.data().isShopper);
     });
 }
 
-function compareEmail(email) {
-    console.log(email);
-    var shoppingListItem = db.collection("shoppers").where('email','==', email);
-    shoppingListItem.get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            window.location.href = 'index-private-shopper.html';
-        });
-      });
+function redirect(isShopper) {
+    if (isShopper) {
+        window.location.href = 'index-private-shopper.html';
+
+    } else {
+
+    }
 }
 
 function sayHello(){
