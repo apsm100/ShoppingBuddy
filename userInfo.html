@@ -189,6 +189,8 @@
     <!--------------------------------------------------------------------->
 
     <script>
+      firebase.auth().onAuthStateChanged(function(user) {
+      console.log(user);
       function getInfo() {
         var name = document.getElementById("inputName4").value;
         var address = document.getElementById("inputAddress").value;
@@ -199,7 +201,9 @@
         var instructions = document.getElementById("inputInstructions").value;
         var postal = document.getElementById("inputZip").value;
         console.log(name);
-        var users = db.collection("users");
+        //var user = firebase.auth().currentUser;
+        var users = db.collection("users/" + user.uid);
+        //var users = db.collection("users");
         if (
           name != "" &&
           address != "" &&
@@ -209,7 +213,8 @@
           postal != "" &&
           instructions != "" 
           //address2 != ""
-        ) {
+        )
+         {
           users.add({
             name: name,
             address: address,
@@ -224,6 +229,7 @@
             "<div class='card border-success mb-3 text-center'><div class='card-header'>Your profile is updated.</h5><a class='btn btn-primary' href='index.html' role='button'>Take me to the home page!</a></div>";
         }
       }
+    });
     </script>
   </body>
 </html>
