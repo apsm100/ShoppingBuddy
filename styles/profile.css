@@ -5,3 +5,16 @@
 .container-fluid {
   margin-top: 24px;
 }
+#content1 {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 100px 300px 50px;
+}
+#info {
+  grid-column: 2;
+  grid-row: 2;
+}
+#change-button {
+  grid-column: 2;
+  grid-row: 3;
+}
