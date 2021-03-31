@@ -12,10 +12,9 @@ function getInfo() {
       phoneNumber != ""
     ) {
       shoppers.add({
-        FirstName: firstName,
-        LastName: lastName,
-        EmailAddress: emailAddress,
-        PhoneNumber: phoneNumber,
+        name: firstName + " " + lastName,
+        email: emailAddress,
+        number: phoneNumber,
       });
       document.getElementById("content").innerHTML =
         "<div class='card border-success mb-3 text-center'><div class='card-header'>Sign-Up Success!</div><div class='card-body text-success'><h5 class='card-title padder'>Your Application Is Pending Review.</h5><a class='btn btn-primary' href='index.html' role='button'>Take me to the home page!</a></div>";

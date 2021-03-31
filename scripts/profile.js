@@ -65,3 +65,13 @@ function sayDeliveryInstructions(){
     })
 }
 sayDeliveryInstructions();
+function isLoggedIn() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+
+        } else {
+            window.location.href = 'login.html';
+        }
+      });
+}
+isLoggedIn();

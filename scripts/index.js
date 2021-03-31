@@ -96,8 +96,9 @@ function deleteItem (itemVal, categoryVal, listItem) {
             doc.ref.delete();
         });
       });
-      hideItem(listItem);
-      localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
+    hideItem(listItem);
+    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function hideItem(listItem) {
@@ -219,6 +220,7 @@ function displayShoppingList() {
 function isLoggedIn() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            isPrivateShopper()
             displayShoppingList();
         } else {
             window.location.href = 'login.html';
@@ -227,6 +229,24 @@ function isLoggedIn() {
 }
 isLoggedIn();
 
+function isPrivateShopper() {
+    var user = firebase.auth().currentUser;
+    var userInfo = db.collection("users").doc(user.uid);
+
+    userInfo.get().then((doc) => {
+        compareEmail(doc.data().email);
+    });
+}
+
+function compareEmail(email) {
+    console.log(email);
+    var shoppingListItem = db.collection("shoppers").where('email','==', email);
+    shoppingListItem.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            window.location.href = 'index-private-shopper.html';
+        });
+      });
+}
 
 function sayHello(){
     firebase.auth().onAuthStateChanged(function(somebody){
