@@ -241,9 +241,7 @@ function isPrivateShopper() {
 function redirect(isShopper) {
     if (isShopper) {
         window.location.href = 'index-private-shopper.html';
-
     } else {
-
     }
 }
 

@@ -8,6 +8,11 @@
     brightness(104%) contrast(97%);
 }
 
+#status {
+  font-size: 70%;
+  
+}
+
 #shopping-list-header {
   text-align: center;
   margin-top: 2em;
