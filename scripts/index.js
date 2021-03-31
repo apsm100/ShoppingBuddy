@@ -23,7 +23,7 @@ function showAddToModal() {
     setTimeout(function(){ 
         modalOverlay.style.opacity = 1; 
     }, 0);
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 window.onclick = function(event) {
@@ -33,7 +33,7 @@ window.onclick = function(event) {
         modalOverlay.style.display = "none";
     }, 250);
     }
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
   }
 
 function searchTyping() {
@@ -44,7 +44,7 @@ function searchTyping() {
         searchdb(itemNameInput.value);
         addItemButton.setAttribute("class", "btn btn-primary");
     }
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function suggestionClick(suggestion, category) {
@@ -54,7 +54,7 @@ function suggestionClick(suggestion, category) {
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
 }
 
 function addItem() {
@@ -147,7 +147,7 @@ function populateSearch(item) {
 
     searchSuggestion.appendChild(a);
 
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
     
 }
 
