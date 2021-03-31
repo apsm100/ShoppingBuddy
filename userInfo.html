@@ -32,7 +32,7 @@
         <h1>shoppingbuddy</h1>
       </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" id="content">
       <form class="row g-3">
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Email</label>
@@ -87,7 +87,7 @@
             <option>Newfoundland</option>
             <option>PEI</option>
             <option>Nova Scotia</option>
-            <option>Yokun</option>
+            <option>Yukon</option>
             <option>Northwest Territories</option>
             <option>Nunavut</option>
           </select>
@@ -109,7 +109,9 @@
         </div>
         <div class="col-12"></div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn btn-primary" type="submit" onclick="getInfo()">
+            Submit
+          </button>
         </div>
       </form>
     </div>
@@ -268,5 +270,43 @@
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
+
+    <script>
+      function getInfo() {
+        var name = document.getElementById("inputName4").value;
+        var address = document.getElementById("inputAddress").value;
+        var emailAddress = document.getElementById("inputEmail4").value;
+        var address2 = document.getElementById("inputAddress2").value;
+        var city = document.getElementById("inputCity").value;
+        var province = document.getElementById("inputState").value;
+        var instructions = document.getElementById("inputInstructions").value;
+        var postal = document.getElementById("inputZip").value;
+        console.log(name);
+        var users = db.collection("users");
+        if (
+          name != "" &&
+          address != "" &&
+          emailAddress != "" &&
+          city != "" &&
+          province != "" &&
+          postal != "" &&
+          instructions != "" &&
+          address2 != ""
+        ) {
+          users.add({
+            name: name,
+            address: address,
+            EmailAddress: emailAddress,
+            city: city,
+            province: province,
+            postal: postal,
+            instructions: instructions,
+            address2: address2,
+          });
+          document.getElementById("content").innerHTML =
+            "<div class='card border-success mb-3 text-center'><div class='card-header'>Your profile is updated.</h5><a class='btn btn-primary' href='index.html' role='button'>Take me to the home page!</a></div>";
+        }
+      }
+    </script>
   </body>
 </html>
