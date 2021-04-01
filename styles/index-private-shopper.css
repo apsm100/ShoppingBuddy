@@ -1,3 +1,6 @@
+input {
+  
+}
 .card {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -19,7 +22,7 @@
 }
 
 #shopping-list {
-  width: 350px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -111,6 +114,13 @@ input {
   -moz-appearance: none !important;
   appearance: none !important;
   border: 1px solid white;
+  width: 80px;
+  float: left;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='16px' width='85px'><text x='2' y='13' fill='gray' font-size='14' font-family='arial'>$</text></svg>");
+  background-repeat:no-repeat;
+  background-position-y: center;
+  padding-left: 14px;
+  margin-right: 5px;
 }
 
 input:focus {
@@ -120,12 +130,12 @@ input:focus {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   gap: 100px;
   padding-left:50px;
   padding-right:50px;
-  grid-template-areas: "menu1 menu2";
+  grid-template-areas: "menu1";
 }
 
 .menu1 {
@@ -135,22 +145,4 @@ input:focus {
   grid-area: menu2;
 }
 
-@media screen and (max-width: 1000px) {
-  .grid-container {
-    gap: 50px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    padding-left:0px;
-    padding-right:0px;
-    grid-template-areas:
-      "menu1"
-      "menu2";
-  }
-  #shopping-list {
-    width: 80%;
-  }
-}
-.work {
-  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
-}
+

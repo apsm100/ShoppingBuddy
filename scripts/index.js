@@ -368,6 +368,10 @@ function populateMatch(shopper) {
         shopperid: id
     })
 
+    db.collection("users").doc(id).update({
+        isAvailable: false
+    })
+
     showOrder(true, id);
 
     db.collection("users/" + (id) + "/pendingOrders").add({

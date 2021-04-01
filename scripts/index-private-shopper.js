@@ -13,6 +13,7 @@ function isPendingOrder() {
         .then(function (snap) {
             snap.forEach(function (doc) {
                 populatePending(doc);
+                
             })
 
         })
@@ -49,18 +50,18 @@ function displayShoppingList(customerid) {
     shoppingList.get()
         .then(function (snap) {
             snap.forEach(function (doc) {
-                populateShoppingList(doc.data());
+                populateShoppingList(doc);
             })
 
         })
 }
 
-function populateShoppingList(itemDat, animate) {
+function populateShoppingList(item) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body");
     a.setAttribute("id", "shopping-list-item");
 
-    a.setAttribute("onclick", "deleteItem('" + itemDat.item + "', '" + itemDat.category + "', this)");
+    a.setAttribute("onclick", "completeItem('"+ item.id + "')");
 
 
     itemName = document.createElement("span");
@@ -69,38 +70,24 @@ function populateShoppingList(itemDat, animate) {
     c = document.createElement("div");
     c.setAttribute("id", "item-category");
 
-    itemName.innerHTML = itemDat.quantity + " x " + itemDat.item;
-    c.innerHTML = itemDat.category;
+    itemInput = document.createElement("input");
+    itemInput.setAttribute("id", item.id);
+    itemInput.setAttribute("type", "number");
+    itemInput.setAttribute("value", "0.00");
+    itemName.innerHTML = item.data().quantity + " x " + item.data().item;
+    c.innerHTML = item.data().category;
 
+    a.appendChild(itemInput);
     a.appendChild(itemName);
     a.appendChild(c);
-
-    marginT = a.style.marginTop;
-    marginB = a.style.marginBottom;
-    paddingT = a.style.paddingTop;
-    paddingB = a.style.paddingBottom;
-    height = a.style.height;
-
-    if (animate == true) {
-        a.style.opacity= 0;
-        a.style.marginTop = 0;
-        a.style.marginBottom = 0;
-        a.style.paddingTop = 0;
-        a.style.paddingBottom = 0;
-        a.style.height = 0;
-    }
 
     shoppingListContainer.appendChild(a);
     
 
-    setTimeout(function(){ 
-        a.style.opacity= 100;
-        a.style.marginTop = marginT;
-        a.style.marginBottom = marginB;
-        a.style.paddingTop = paddingT;
-        a.style.paddingBottom = paddingB;
-        a.style.height = height;
-    }, 0);
+
+}
+
+function completeItem(id) {
 
 }
 
@@ -124,13 +111,30 @@ sayHello();
 function isLoggedIn() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-
+            isPrivateShopper()
         } else {
             window.location.href = 'login.html';
         }
       });
 }
 isLoggedIn();
+
+function isPrivateShopper() {
+    var user = firebase.auth().currentUser;
+    var userInfo = db.collection("users").doc(user.uid);
+
+    userInfo.get().then((doc) => {
+        redirect(doc.data().isShopper);
+    });
+}
+
+function redirect(isShopper) {
+    if (isShopper) {
+        
+    } else {
+        window.location.href = 'index.html';
+    }
+}
 
 function displayStatus(isAvailable) {
     if (isAvailable) {
