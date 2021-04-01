@@ -15,6 +15,12 @@ var addItemButton = document.getElementById("add-item-button");
 var modalOverlay = document.getElementById("modal-overlay");
 var matchModalOverlay = document.getElementById("match-overlay");
 
+var matchStatus = document.getElementById("match-status");
+var matchName = document.getElementById("match-name");
+var matchInfo = document.getElementById("match-info");
+var matchButton = document.getElementById("match-btn");
+var matchView = document.getElementById("view-match");
+
 var search = JSON.parse(searchJSON);
 search = search["search"];
 
@@ -274,7 +280,42 @@ function sayHello(){
 }
 sayHello();
 
-function startOrder() {
+function orderButtonClick() {
     showMatchModal();
+    // matchStatus.innerHTML = "Click 'Match' to get your order started"
+    // matchName.innerHTML = "";
+    // matchInfo.innerHTML = "";
+    // matchButton.innerHTML = "Match";
+    // // matchButton.setAttribute("onclick", "matchButtonClick()");
+    // // matchButton.setAttribute("href", "");
+    // matchButton.setAttribute("class", "btn btn-primary");
+}
+
+function matchButtonClick() {
+    var privateShopper = db.collection("users").where('isAvailable','==', true);
+    matchStatus.innerHTML = "Finding a private shopper for you..."
+    matchView.style.height =  "100px";
+    setTimeout(function(){ 
+        privateShopper.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                populateMatch(doc);
+            });
+          });
+    }, 1500);
+
+      matchButton.setAttribute("class", "btn btn-primary disabled");
+}
+function populateMatch(user) {
+    var name = user.data().name;
+    matchView.style.height =  "245px";
+
+    matchStatus.innerHTML = "You have been matched"
+    matchName.innerHTML = name;
+    matchInfo.innerHTML = "Your cart will update with the price owed.";
+    matchButton.setAttribute("class", "btn btn-primary");
+    matchButton.innerHTML = "Go to Cart";
+    matchButton.setAttribute("onclick", "");
+    matchButton.setAttribute("href", "cart.html");
+
 }
 //firebase.auth().signOut()         USE THIS TO LOG OUT USER.
