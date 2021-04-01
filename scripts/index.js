@@ -46,14 +46,18 @@ window.onclick = function(event) {
         modalOverlay.style.display = "none";
     }, 250);
     } else if (event.target == matchModalOverlay) {
-        matchModalOverlay.style.opacity = 0;
-        setTimeout(function(){ 
-            matchModalOverlay.style.display = "none";
-        }, 250);
+        hideMatchModal()
     }
 
   }
 
+
+function hideMatchModal() {
+    matchModalOverlay.style.opacity = 0;
+    setTimeout(function(){ 
+        matchModalOverlay.style.display = "none";
+    }, 250);
+}
 function showMatchModal() {
     matchModalOverlay.style.display = "block";
     setTimeout(function(){ 
@@ -352,11 +356,10 @@ function populateMatch(shopper) {
 
     matchStatus.innerHTML = "You have been matched"
     matchName.innerHTML = name;
-    matchInfo.innerHTML = "Your cart will update with the price owed.";
+    matchInfo.innerHTML = "You will recieve an update with the amount owed.";
     matchButton.setAttribute("class", "btn btn-primary");
-    matchButton.innerHTML = "Go to Cart";
-    matchButton.setAttribute("onclick", "");
-    matchButton.setAttribute("href", "cart.html");
+    matchButton.innerHTML = "Close";
+    matchButton.setAttribute("onclick", "hideMatchModal()");
 
     var user = firebase.auth().currentUser;
 
@@ -366,6 +369,12 @@ function populateMatch(shopper) {
     })
 
     showOrder(true, id);
+
+    db.collection("users/" + (id) + "/pendingOrders").add({
+        cost: 0,
+        userid: user.uid,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
 
 
 }

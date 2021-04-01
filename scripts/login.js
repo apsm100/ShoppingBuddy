@@ -23,6 +23,8 @@ var uiConfig = {
             //write to firestore
             name: user.displayName, //"users" collection
             email: user.email, //with authenticated user's ID (user.uid)
+            isOrder: false,
+            shopperid: 0
           })
           .then(function () {
             console.log("New user added to firestore");

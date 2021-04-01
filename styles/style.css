@@ -19,11 +19,11 @@
     align-items: center;
     box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.1), 0 2px 5px 5px rgba(0, 0, 0, 0.1);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas:
-        "mb1 mb2 mb3 mb4";
+        "mb1 mb2 mb3";
 }
 
 .container-fluid {
@@ -58,17 +58,12 @@
     grid-area: mb3;
 }
 
-.mb4 {
-    grid-area: mb4;
-
-}
 
 
 
 .mb1,
 .mb2,
-.mb3,
-.mb4 {
+.mb3 {
     margin-left: auto;
     margin-right: auto;
     
