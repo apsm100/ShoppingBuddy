@@ -85,6 +85,11 @@
   font-style: italic;
 }
 
+#order-info {
+  display: none;
+  
+}
+
 #suggestions {
   max-height: 250px;
   overflow-y: scroll;

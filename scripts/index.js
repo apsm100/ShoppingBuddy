@@ -11,6 +11,7 @@ var shoppingListHeader = document.getElementById("shopping-list-header");
 
 var addToShoppingListContainer = document.getElementById("addto-shopping-list");
 var addItemButton = document.getElementById("add-item-button");
+var addButton = document.getElementById("add-button");
 
 var modalOverlay = document.getElementById("modal-overlay");
 var matchModalOverlay = document.getElementById("match-overlay");
@@ -20,6 +21,11 @@ var matchName = document.getElementById("match-name");
 var matchInfo = document.getElementById("match-info");
 var matchButton = document.getElementById("match-btn");
 var matchView = document.getElementById("view-match");
+
+var orderButton = document.getElementById("order-btn");
+
+var orderInfo = document.getElementById("order-info");
+var shopperInfo = document.getElementById("shopper-info");
 
 var search = JSON.parse(searchJSON);
 search = search["search"];
@@ -102,7 +108,7 @@ function addItem() {
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
     }, 500);
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+ 
 }
 
 
@@ -118,7 +124,7 @@ function deleteItem (itemVal, categoryVal, listItem) {
       });
 
     hideItem(listItem);
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 function hideItem(listItem) {
@@ -168,7 +174,6 @@ function populateSearch(item) {
 
     searchSuggestion.appendChild(a);
 
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
     
 }
 
@@ -218,7 +223,7 @@ function populateShoppingList(itemDat, animate) {
         a.style.paddingBottom = paddingB;
         a.style.height = height;
     }, 0);
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 
@@ -242,12 +247,46 @@ function isLoggedIn() {
         if (user) {
             isPrivateShopper()
             displayShoppingList();
+            isOrder();
         } else {
             window.location.href = 'login.html';
         }
       });
 }
 isLoggedIn();
+
+function isOrder() {
+    var user = firebase.auth().currentUser;
+    var userInfo = db.collection("users").doc(user.uid);
+
+    userInfo.get().then((doc) => {
+        showOrder(doc.data().isOrder, doc.data().shopperid);
+        
+    });
+}
+
+function showOrder(isOrder, shopperid) {
+    if (isOrder) {
+        console.log(shopperid);
+        var privateShopper = db.collection("users").where('__name__','==', shopperid);
+        privateShopper.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                showOrderTitles(doc);
+            });
+          });
+        shoppingListContainer.style.backgroundColor = 'grey';
+        shoppingListContainer.style.color = 'white';
+        addButton.style.display = "none";
+        orderButton.style.display = "none";
+        shoppingListContainer.style.pointerEvents = "none";
+
+    }
+}
+
+function showOrderTitles(shopper) {
+    orderInfo.style.display = "block";
+    shopperInfo.innerHTML = shopper.data().name + " is currently shopping for you.<br> Current Total: $0";
+}
 
 function isPrivateShopper() {
     var user = firebase.auth().currentUser;
@@ -305,8 +344,10 @@ function matchButtonClick() {
 
       matchButton.setAttribute("class", "btn btn-primary disabled");
 }
-function populateMatch(user) {
-    var name = user.data().name;
+function populateMatch(shopper) {
+    var name = shopper.data().name;
+    var id = shopper.id;
+
     matchView.style.height =  "245px";
 
     matchStatus.innerHTML = "You have been matched"
@@ -316,6 +357,16 @@ function populateMatch(user) {
     matchButton.innerHTML = "Go to Cart";
     matchButton.setAttribute("onclick", "");
     matchButton.setAttribute("href", "cart.html");
+
+    var user = firebase.auth().currentUser;
+
+    db.collection("users").doc(user.uid).update({
+        isOrder: true,
+        shopperid: id
+    })
+
+    showOrder(true, id);
+
 
 }
 //firebase.auth().signOut()         USE THIS TO LOG OUT USER.
