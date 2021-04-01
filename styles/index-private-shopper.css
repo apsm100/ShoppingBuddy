@@ -122,7 +122,11 @@ input {
   padding-left: 14px;
   margin-right: 5px;
 }
-
+.check-mark {
+ width:24px;
+ display:inline-block;
+ margin-right:10px;
+}
 input:focus {
   outline: none;
   border: 1px solid gainsboro;

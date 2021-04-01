@@ -61,9 +61,13 @@ function populateShoppingList(item) {
     a.setAttribute("class", "card-body");
     a.setAttribute("id", "shopping-list-item");
 
-    a.setAttribute("onclick", "completeItem('"+ item.id + "')");
+    
 
-
+    checkMark = document.createElement("div");
+    checkMark.innerHTML = "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20 6L9 17L4 12' stroke='#111111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
+    checkMark.setAttribute("class", "check-mark");
+    checkMark.setAttribute("onclick", "completeItem('"+ item.id + "')");
+    
     itemName = document.createElement("span");
     itemName.setAttribute("id", "item-name");
 
@@ -71,24 +75,38 @@ function populateShoppingList(item) {
     c.setAttribute("id", "item-category");
 
     itemInput = document.createElement("input");
-    itemInput.setAttribute("id", item.id);
+    itemInput.setAttribute("id", "input" + item.id);
     itemInput.setAttribute("type", "number");
     itemInput.setAttribute("value", "0.00");
     itemName.innerHTML = item.data().quantity + " x " + item.data().item;
     c.innerHTML = item.data().category;
-
+    a.appendChild(checkMark);
     a.appendChild(itemInput);
     a.appendChild(itemName);
     a.appendChild(c);
+
+    a.setAttribute("id", item.id);
 
     shoppingListContainer.appendChild(a);
     
 
 
+
 }
 
 function completeItem(id) {
+    var item = document.getElementById(id);
+    item.style.textDecoration = "line-through";
+    item.style.backgroundColor = 'lightgrey';
+    item.style.color = 'white';
+    item.style.pointerEvents = "none";
 
+    var input = document.getElementById("input" + id);
+    var price = input.value;
+    
+    input.style.backgroundColor = 'lightgrey';
+    input.style.borderColor = 'lightgrey';
+    input.style.color = 'white';
 }
 
 function sayHello(){
