@@ -64,7 +64,7 @@ function populateShoppingList(item) {
     
 
     checkMark = document.createElement("div");
-    checkMark.innerHTML = "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20 6L9 17L4 12' stroke='#111111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
+    checkMark.innerHTML = "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20 6L9 17L4 12' stroke='grey' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
     checkMark.setAttribute("class", "check-mark");
     checkMark.setAttribute("onclick", "completeItem('"+ item.id + "')");
     
@@ -97,15 +97,15 @@ function populateShoppingList(item) {
 function completeItem(id) {
     var item = document.getElementById(id);
     item.style.textDecoration = "line-through";
-    item.style.backgroundColor = 'lightgrey';
+    item.style.backgroundColor = 'grey';
     item.style.color = 'white';
     item.style.pointerEvents = "none";
 
     var input = document.getElementById("input" + id);
     var price = input.value;
     
-    input.style.backgroundColor = 'lightgrey';
-    input.style.borderColor = 'lightgrey';
+    input.style.backgroundColor = 'grey';
+    input.style.borderColor = 'grey';
     input.style.color = 'white';
 }
 
