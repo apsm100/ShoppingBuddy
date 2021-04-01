@@ -31,6 +31,10 @@
                 <div id="add-button" onclick="showAddToModal()">+</div>
                 <div class="card" id="shopping-list">
                 </div>
+                <div class="text-center">
+                    <button type="button" id="order-btn" class="btn btn-primary" onclick="startOrder()">Start Order</button>
+                </div>
+                
             </div>
             <div id="modal-overlay">
                 <div class="card" id="addto-shopping-list">
@@ -43,6 +47,14 @@
 
                     </div>
                     <div id="suggestions">
+                    </div>
+                </div>
+            </div>
+            <div id="match-overlay">
+                <div class="card" id="view-match">
+                    <div class="card-body">
+                        <h5 id="match-status">Finding a private shopper for you...</h5>
+                        <h4 id="match-name"></h4>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ var addToShoppingListContainer = document.getElementById("addto-shopping-list");
 var addItemButton = document.getElementById("add-item-button");
 
 var modalOverlay = document.getElementById("modal-overlay");
+var matchModalOverlay = document.getElementById("match-overlay");
 
 var search = JSON.parse(searchJSON);
 search = search["search"];
@@ -23,7 +24,7 @@ function showAddToModal() {
     setTimeout(function(){ 
         modalOverlay.style.opacity = 1; 
     }, 0);
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 window.onclick = function(event) {
@@ -32,9 +33,22 @@ window.onclick = function(event) {
       setTimeout(function(){ 
         modalOverlay.style.display = "none";
     }, 250);
+    } else if (event.target == matchModalOverlay) {
+        matchModalOverlay.style.opacity = 0;
+        setTimeout(function(){ 
+            matchModalOverlay.style.display = "none";
+        }, 250);
     }
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
   }
+
+function showMatchModal() {
+    matchModalOverlay.style.display = "block";
+    setTimeout(function(){ 
+        matchModalOverlay.style.opacity = 1; 
+    }, 0);
+
+}
 
 function searchTyping() {
     if (itemNameInput.value == ""){
@@ -44,7 +58,7 @@ function searchTyping() {
         searchdb(itemNameInput.value);
         addItemButton.setAttribute("class", "btn btn-primary");
     }
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 function suggestionClick(suggestion, category) {
@@ -54,7 +68,7 @@ function suggestionClick(suggestion, category) {
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 function addItem() {
@@ -259,5 +273,8 @@ function sayHello(){
     })
 }
 sayHello();
-console.log(localStorage);
+
+function startOrder() {
+    showMatchModal();
+}
 //firebase.auth().signOut()         USE THIS TO LOG OUT USER.
