@@ -1,5 +1,16 @@
-input {
-  
+#timestamp {
+  float:right;
+  margin-bottom:5px;
+  margin-right:2px;
+  width:200px;
+  text-align:right;
+  margin-top:5px;
+}
+#customer-name{
+  float:left;
+  margin-bottom:5px;
+  margin-left:2px;
+  margin-top:5px;
 }
 .card {
   margin-top: 30px;
@@ -19,6 +30,7 @@ input {
 #shopping-list-header {
   text-align: center;
   margin-top: 2em;
+  margin-bottom:2em;
 }
 
 #shopping-list {
@@ -68,8 +80,9 @@ input {
 }
 #search-item-category,
 #item-category {
-  float: right;
+  float: left;
   font-style: italic;
+  color: lightgray;
 }
 
 #suggestions {
@@ -97,6 +110,11 @@ input {
   margin-top: 6px;
 }
 
+#item-name {
+  float:left;
+  margin-right:14px;
+}
+
 #item-name-input,
 #category-name-input {
   display: block;
@@ -105,6 +123,7 @@ input {
 
 #category-name-input {
   font-style: italic;
+
 }
 #quantity-input {
   max-width: 3em;
@@ -114,18 +133,25 @@ input {
   -moz-appearance: none !important;
   appearance: none !important;
   border: 1px solid white;
-  width: 80px;
-  float: left;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='16px' width='85px'><text x='2' y='13' fill='lightgray' font-size='14' font-family='arial'>$</text></svg>");
+  width: 65px;
+  float: right;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='14px' width='85px'><text x='2' y='13' fill='lightgray' font-size='16' font-family='arial'>$</text></svg>");
   background-repeat:no-repeat;
   background-position-y: center;
   padding-left: 14px;
-  margin-right: 5px;
+  margin-left: 18px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .check-mark {
  width:24px;
- display:inline-block;
- margin-right:10px;
+ margin-right:5px;
+ margin-left: 10px;
+ float:right;
 }
 input:focus {
   outline: none;

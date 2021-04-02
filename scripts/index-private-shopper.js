@@ -22,7 +22,7 @@ function isPendingOrder() {
 function populatePending(pending) {
     var customerid = pending.data().userid;
     var timestamp = pending.data().timestamp;
-    timeStamp.innerHTML = timestamp.toDate().toDateString();
+    timeStamp.innerHTML = timestamp.toDate().toLocaleString();
     
     displayShoppingList(customerid);
     displayCustomer(customerid);
@@ -39,7 +39,7 @@ function displayCustomer(customerid) {
 }
 
 function updateCustomer(customer) {
-    customerName.innerHTML = "You are shopping for<br>" + customer.data().name;
+    customerName.innerHTML = customer.data().name;
 
 }
 
@@ -65,6 +65,7 @@ function populateShoppingList(item) {
 
     checkMark = document.createElement("div");
     checkMark.innerHTML = "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20 6L9 17L4 12' stroke='grey' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
+    checkMark.setAttribute("id", "check-mark" + item.id);
     checkMark.setAttribute("class", "check-mark");
     checkMark.setAttribute("onclick", "completeItem('"+ item.id + "')");
     
@@ -78,6 +79,7 @@ function populateShoppingList(item) {
     itemInput.setAttribute("id", "input" + item.id);
     itemInput.setAttribute("type", "number");
     itemInput.setAttribute("value", "0.00");
+    itemInput.setAttribute("onclick", "this.select();");
     itemName.innerHTML = item.data().quantity + " x " + item.data().item;
     c.innerHTML = item.data().category;
     a.appendChild(checkMark);
@@ -100,10 +102,10 @@ function completeItem(id) {
     item.style.backgroundColor = 'grey';
     item.style.color = 'white';
     item.style.pointerEvents = "none";
-
     var input = document.getElementById("input" + id);
+    var checkMark = document.getElementById("check-mark" + id);
     var price = input.value;
-    
+    checkMark.style.display = "none";
     input.style.backgroundColor = 'grey';
     input.style.borderColor = 'grey';
     input.style.color = 'white';
