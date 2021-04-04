@@ -35,7 +35,13 @@
                     <button type="button" id="order-btn" class="btn btn-primary" onclick="orderButtonClick()">Order</button>
                 </div>
                 <div class="text-center" id="order-info">
-                    <h3><span id="shopper-info"></span></h3>
+                    <h5 id=shopper-title>Order</h5>
+                    <br>
+                    <h3 id="shopper-info"></h3>
+                    <h3 id="shopper-price">$0</h3>
+                    <br><br>
+                    <button type="button" id="cancel-order-btn" class="btn btn-primary disabled" onclick="">Pay</button>
+                    <button type="button" id="cancel-order-btn" class="btn btn-primary" onclick="cancelOrderButtonClick()">Cancel Order</button>
                 </div>
             </div>
             <div id="modal-overlay">
@@ -60,6 +66,15 @@
                         <br>
                         <h6 id="match-info"></h6>
                         <a onclick="matchButtonClick()" class="btn btn-primary" id="match-btn">Match</a>
+                    </div>
+                </div>
+            </div>
+            <div id="cancel-overlay">
+                <div class="card" id="view-cancel">
+                    <div class="card-body">
+                        <h5 id="match-status">Are you sure you want to cancel your order?</h5>
+                        <a onclick="cancelOrder()" class="btn btn-primary">Yes</a>
+                        <a onclick="hideCancelModal()" class="btn btn-primary">No</a>
                     </div>
                 </div>
             </div>

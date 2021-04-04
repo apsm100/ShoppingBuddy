@@ -19,6 +19,8 @@ function isPendingOrder() {
         })
 }
 
+
+
 function populatePending(pending) {
     var customerid = pending.data().userid;
     var timestamp = pending.data().timestamp;
@@ -104,11 +106,45 @@ function completeItem(id) {
     item.style.pointerEvents = "none";
     var input = document.getElementById("input" + id);
     var checkMark = document.getElementById("check-mark" + id);
-    var price = input.value;
+    
+
     checkMark.style.display = "none";
     input.style.backgroundColor = 'grey';
     input.style.borderColor = 'grey';
     input.style.color = 'white';
+
+    
+    // savePriceItem(id);
+
+}
+
+function savePriceItem(id) {
+    var user = firebase.auth().currentUser;
+    var pendingOrders = db.collection("users/" + user.uid + "/pendingOrders");
+
+    shoppingListContainer.innerHTML = "";
+    pendingOrders.get()
+        .then(function (snap) {
+            snap.forEach(function (doc) {
+                parseSave(id, doc);
+                
+            })
+
+        })
+   
+
+}
+
+
+function parseSave(id, doc) {
+    customerID = doc.data().userid;
+    console.log(id)
+    var input = document.getElementById("input" + id);
+    console.log(input);
+    var price = input.value;
+    var shoppingListItem = db.collection("users/" + customerID + "/shoppingList").doc(id).add({price: price});
+    
+
 }
 
 function sayHello(){

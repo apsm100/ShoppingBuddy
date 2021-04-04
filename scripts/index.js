@@ -15,6 +15,7 @@ var addButton = document.getElementById("add-button");
 
 var modalOverlay = document.getElementById("modal-overlay");
 var matchModalOverlay = document.getElementById("match-overlay");
+var cancelModalOverlay = document.getElementById("cancel-overlay");
 
 var matchStatus = document.getElementById("match-status");
 var matchName = document.getElementById("match-name");
@@ -62,6 +63,20 @@ function showMatchModal() {
     matchModalOverlay.style.display = "block";
     setTimeout(function(){ 
         matchModalOverlay.style.opacity = 1; 
+    }, 0);
+
+}
+
+function hideCancelModal() {
+    cancelModalOverlay.style.opacity = 0;
+    setTimeout(function(){ 
+        cancelModalOverlay.style.display = "none";
+    }, 250);
+}
+function showCancelModal() {
+    cancelModalOverlay.style.display = "block";
+    setTimeout(function(){ 
+        cancelModalOverlay.style.opacity = 1; 
     }, 0);
 
 }
@@ -271,7 +286,6 @@ function isOrder() {
 
 function showOrder(isOrder, shopperid) {
     if (isOrder) {
-        console.log(shopperid);
         var privateShopper = db.collection("users").where('__name__','==', shopperid);
         privateShopper.get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -284,12 +298,19 @@ function showOrder(isOrder, shopperid) {
         orderButton.style.display = "none";
         shoppingListContainer.style.pointerEvents = "none";
 
+    } else {
+        shoppingListContainer.style.backgroundColor = 'white';
+        shoppingListContainer.style.color = 'black';
+        addButton.style.display = "block";
+        orderButton.style.display = "inline";
+        shoppingListContainer.style.pointerEvents = "auto";
+        orderInfo.style.display = "none";
     }
 }
 
 function showOrderTitles(shopper) {
     orderInfo.style.display = "block";
-    shopperInfo.innerHTML = shopper.data().name + " is currently shopping for you.<br> Current Total: $0";
+    shopperInfo.innerHTML = shopper.data().name;
 }
 
 function isPrivateShopper() {
@@ -325,13 +346,10 @@ sayHello();
 
 function orderButtonClick() {
     showMatchModal();
-    // matchStatus.innerHTML = "Click 'Match' to get your order started"
-    // matchName.innerHTML = "";
-    // matchInfo.innerHTML = "";
-    // matchButton.innerHTML = "Match";
-    // // matchButton.setAttribute("onclick", "matchButtonClick()");
-    // // matchButton.setAttribute("href", "");
-    // matchButton.setAttribute("class", "btn btn-primary");
+}
+
+function cancelOrderButtonClick() {
+    showCancelModal();
 }
 
 function matchButtonClick() {
@@ -380,6 +398,44 @@ function populateMatch(shopper) {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
 
+
+}
+
+function cancelOrder() {
+    var user = firebase.auth().currentUser;
+    var userInfo = db.collection("users").doc(user.uid);
+    
+
+    userInfo.get().then((doc) => {
+        removeOrder(doc.data().shopperid);
+        
+    });
+
+
+}
+
+
+function removeOrder(id) {
+    var user = firebase.auth().currentUser;
+    var order = db.collection("users/" + (id) + "/pendingOrders").where('userid','==', user.uid);
+
+    order.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            doc.ref.delete();
+        });
+      });
+
+    db.collection("users").doc(id).update({
+        isAvailable: true
+    })
+
+    db.collection("users").doc(user.uid).update({
+        isOrder: false,
+        shopperid: ""
+    })
+    hideCancelModal();
+    orderButton.setAttribute("class", "btn btn-primary disabled");
+    isOrder();
 
 }
 //firebase.auth().signOut()         USE THIS TO LOG OUT USER.
