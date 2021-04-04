@@ -63,3 +63,15 @@ var uiConfig = {
 };
 // The start method will wait until the DOM is loaded.
 ui.start("#firebaseui-auth-container", uiConfig);
+
+var loginBox = document.getElementById("login");
+var mainView = document.getElementById("main-view");
+
+function showLogin() {
+
+    mainView.style.display = "none";
+
+
+  loginBox.style.display = "inline";
+
+}

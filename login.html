@@ -31,16 +31,20 @@
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
 
-    <div class="top-nav-bar">
+
+    <div class="container-fluid" id="main-view">
       <div class="logo">
         <h1>shoppingbuddy</h1>
+        <a onclick="showLogin()" class="btn btn-primary" id="login-btn">login</a>
       </div>
+      
+      
     </div>
-    <div class="container-fluid">
-      <div id="firebaseui-auth-container"></div>
-      <div id="loader"></div>
-    </div>
-
+   
+    <div id="login">
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader"></div>
+  </div>
     <div class="bottom-nav-bar">
       <div class="mb1">
         <a href="index.html">

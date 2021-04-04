@@ -1,9 +1,19 @@
 #firebaseui-auth-container {
   position: relative;
   top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  bottom:50%; 
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
 }
 .bottom-nav-bar {
   display: none;
+}
+
+#login {
+ display: none; 
+
+}
+
+#login-btn {
+  margin-left: 4px; 
 }
