@@ -66,12 +66,18 @@ ui.start("#firebaseui-auth-container", uiConfig);
 
 var loginBox = document.getElementById("login");
 var mainView = document.getElementById("main-view");
+var logos = document.getElementById("logos");
+var loginButton = document.getElementById("login-btn");
+var loginUI = document.getElementById("firebaseui-auth-container");
 
 function showLogin() {
-
-    mainView.style.display = "none";
-
+  document.body.style.backgroundColor = "whitesmoke";
+  logos.style.height = "40px";
+  loginButton.style.display = "none";
 
   loginBox.style.display = "inline";
-
+  
+  setTimeout(function(){ 
+    loginUI.style.opacity = 1;
+}, 250);
 }
