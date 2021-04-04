@@ -73,8 +73,9 @@
                 <div class="card" id="view-cancel">
                     <div class="card-body">
                         <h5 id="match-status">Are you sure you want to cancel your order?</h5>
-                        <a onclick="cancelOrder()" class="btn btn-primary">Yes</a>
-                        <a onclick="hideCancelModal()" class="btn btn-primary">No</a>
+                        <a onclick="hideCancelModal()" class="btn btn-primary" id="no-cancel">No</a>
+                        <a onclick="cancelOrder()" class="btn btn-primary" id="yes-cancel">Yes</a>
+                        
                     </div>
                 </div>
             </div>

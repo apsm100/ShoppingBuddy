@@ -158,6 +158,11 @@
   margin-top: 6px;
 }
 
+#yes-cancel, #no-cancel {
+  float: right;
+  margin-top: 6px;
+  margin-left:4px;
+}
 #item-name-input,
 #category-name-input {
   display: block;
