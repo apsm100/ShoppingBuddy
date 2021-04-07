@@ -19,11 +19,13 @@
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
 
-    <div class="top-nav-bar" id="top-nav-bar">
+    <div class="top-nav-bar">
         <div class="logo">
-            <h1>shoppingbuddy</h1>
+          <h1>shoppingbuddy</h1>
+          <div class="position-absolute top-50 end-0 bg-danger translate-middle">
+            <button onclick="firebase.auth().signOut()" class="btn btn-primary">Log Out</button></div>
         </div>
-    </div>
+      </div>
     <div id="main-container" class="container-fluid">
         <div class="grid-container">
             <div class="menu1">
