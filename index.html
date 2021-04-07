@@ -22,18 +22,12 @@
     <div class="top-nav-bar">
         <div class="logo">
           <h1>shoppingbuddy</h1>
-          <div class="position-absolute top-50 end-0 translate-middle">
-            <button onclick="firebase.auth().signOut()" class="btn btn-secondary">Log Out</button>
-        </div>
         </div>
       </div>
     <div id="main-container" class="container-fluid">
         <div class="grid-container">
             <div class="menu1">
-                <div class="thehead">
                     <h5 id="shopping-list-header"><span id="Name-goes-here"></span>List</h5>
-                    <hr>
-                </div>
                 
                 <div id="add-button" onclick="showAddToModal()">+</div>
                 
@@ -41,10 +35,6 @@
                 </div>
                 
                 <div class="text-center">
-                    <div>
-                        <h6><p class="text-secondary">Click on an item to remove it from your list</p></h6>
-                    </div>
-                    
                     <button type="button" id="order-btn" class="btn btn-primary" onclick="orderButtonClick()">Order</button>
                 </div>
                 <div class="text-center" id="order-info">

@@ -68,7 +68,7 @@
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 1rem;
+  margin-top: 5px;
 }
 
 #view-match {
@@ -135,7 +135,6 @@
   display: block;
   text-align: center;
   font-size: 250%;
-  margin: 2.5rem;
 }
 
 #add-button:hover {
@@ -153,7 +152,7 @@
 }
 
 #match-btn {
-  margin: 0 auto;
+  float:right;
   margin-top: 6px;
 }
 
@@ -207,11 +206,6 @@ input:focus {
   grid-area: menu2;
 }
 
-.thehead {
-  border-width: 10%;
-  width: 50%;
-  margin: 0 auto;
-}
 input[type="number"] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
