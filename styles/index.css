@@ -36,14 +36,74 @@
   opacity: 0;
 }
 
+#match-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 64px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
+#cancel-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 64px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
 #addto-shopping-list {
+  padding: 0.5rem;
+  width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 1rem;
+}
+
+#view-match {
   width: 250px;
+  height: 180px;
+  overflow-y: auto;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-top: 5px;
 }
 
+#view-cancel {
+  width: 250px;
+  height: auto;
+  overflow-y: auto;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 5px;
+}
+
+#shopper-info {
+  float: left;
+  margin-left: 10%;
+}
+
+#shopper-price {
+  float: right;
+  margin-right: 10%;
+}
+
+#cancel-order-btn {
+  margin-right: 0%;
+}
 #search-item {
   margin-top: 0;
   margin-bottom: 1em;
@@ -62,6 +122,10 @@
   font-style: italic;
 }
 
+#order-info {
+  display: none;
+}
+
 #suggestions {
   max-height: 250px;
   overflow-y: scroll;
@@ -71,6 +135,7 @@
   display: block;
   text-align: center;
   font-size: 250%;
+  margin: 2.5rem;
 }
 
 #add-button:hover {
@@ -87,17 +152,30 @@
   margin-top: 6px;
 }
 
+#match-btn {
+  margin: 0 auto;
+  margin-top: 6px;
+}
+
+#yes-cancel,
+#no-cancel {
+  float: right;
+  margin-top: 6px;
+  margin-left: 4px;
+}
 #item-name-input,
 #category-name-input {
   display: block;
   width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 #category-name-input {
   font-style: italic;
 }
 #quantity-input {
-  max-width: 3em;
+  max-width: 7rem;
 }
 input {
   -webkit-appearance: none !important;
@@ -116,16 +194,82 @@ input:focus {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 100px;
-  padding-left:50px;
-  padding-right:50px;
+  padding-left: 50px;
+  padding-right: 50px;
   grid-template-areas: "menu1 menu2";
 }
 
 .menu1 {
   grid-area: menu1;
 }
+
 .menu2 {
   grid-area: menu2;
+}
+
+.thehead {
+  border-width: 10%;
+  width: 50%;
+  margin: 0 auto;
+}
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input {
+  border: 2px solid #ddd;
+  display: inline-flex;
+  width: 11rem;
+  margin-top: 0.5rem;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+}
+
+.number-input button {
+  outline: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 2rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+.number-input button:before,
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 0.6rem;
+  height: 2px;
+  background-color: gray;
+  transform: translate(-50%, -50%);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type="number"] {
+  max-width: 1rem;
+  padding: 0.5rem;
+  border: solid #ddd;
+  border-width: 0 2px;
+  height: 2rem;
+  text-align: center;
 }
 
 @media screen and (max-width: 1000px) {
@@ -134,8 +278,8 @@ input:focus {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    padding-left:0px;
-    padding-right:0px;
+    padding-left: 0px;
+    padding-right: 0px;
     grid-template-areas:
       "menu1"
       "menu2";
@@ -143,7 +287,4 @@ input:focus {
   #shopping-list {
     width: 80%;
   }
-}
-.work {
-  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
 }

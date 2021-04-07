@@ -16,5 +16,12 @@
 }
 #change-button {
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 4;
+  margin: 1rem auto;
+}
+.list-group-item {
+  padding: 1rem;
+}
+.text-left {
+  text-align: left;
 }

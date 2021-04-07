@@ -11,8 +11,22 @@ var shoppingListHeader = document.getElementById("shopping-list-header");
 
 var addToShoppingListContainer = document.getElementById("addto-shopping-list");
 var addItemButton = document.getElementById("add-item-button");
+var addButton = document.getElementById("add-button");
 
 var modalOverlay = document.getElementById("modal-overlay");
+var matchModalOverlay = document.getElementById("match-overlay");
+var cancelModalOverlay = document.getElementById("cancel-overlay");
+
+var matchStatus = document.getElementById("match-status");
+var matchName = document.getElementById("match-name");
+var matchInfo = document.getElementById("match-info");
+var matchButton = document.getElementById("match-btn");
+var matchView = document.getElementById("view-match");
+
+var orderButton = document.getElementById("order-btn");
+
+var orderInfo = document.getElementById("order-info");
+var shopperInfo = document.getElementById("shopper-info");
 
 var search = JSON.parse(searchJSON);
 search = search["search"];
@@ -23,7 +37,7 @@ function showAddToModal() {
     setTimeout(function(){ 
         modalOverlay.style.opacity = 1; 
     }, 0);
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 window.onclick = function(event) {
@@ -32,9 +46,40 @@ window.onclick = function(event) {
       setTimeout(function(){ 
         modalOverlay.style.display = "none";
     }, 250);
+    } else if (event.target == matchModalOverlay) {
+        hideMatchModal()
     }
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
   }
+
+
+function hideMatchModal() {
+    matchModalOverlay.style.opacity = 0;
+    setTimeout(function(){ 
+        matchModalOverlay.style.display = "none";
+    }, 250);
+}
+function showMatchModal() {
+    matchModalOverlay.style.display = "block";
+    setTimeout(function(){ 
+        matchModalOverlay.style.opacity = 1; 
+    }, 0);
+
+}
+
+function hideCancelModal() {
+    cancelModalOverlay.style.opacity = 0;
+    setTimeout(function(){ 
+        cancelModalOverlay.style.display = "none";
+    }, 250);
+}
+function showCancelModal() {
+    cancelModalOverlay.style.display = "block";
+    setTimeout(function(){ 
+        cancelModalOverlay.style.opacity = 1; 
+    }, 0);
+
+}
 
 function searchTyping() {
     if (itemNameInput.value == ""){
@@ -44,7 +89,7 @@ function searchTyping() {
         searchdb(itemNameInput.value);
         addItemButton.setAttribute("class", "btn btn-primary");
     }
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 function suggestionClick(suggestion, category) {
@@ -54,7 +99,7 @@ function suggestionClick(suggestion, category) {
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 function addItem() {
@@ -82,7 +127,7 @@ function addItem() {
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
     }, 500);
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+ 
 }
 
 
@@ -96,8 +141,9 @@ function deleteItem (itemVal, categoryVal, listItem) {
             doc.ref.delete();
         });
       });
-      hideItem(listItem);
-      localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
+    hideItem(listItem);
+
 }
 
 function hideItem(listItem) {
@@ -147,7 +193,6 @@ function populateSearch(item) {
 
     searchSuggestion.appendChild(a);
 
-    // localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
     
 }
 
@@ -197,7 +242,7 @@ function populateShoppingList(itemDat, animate) {
         a.style.paddingBottom = paddingB;
         a.style.height = height;
     }, 0);
-    localStorage.setItem("shopperList", document.getElementById("shopping-list").innerHTML);
+
 }
 
 
@@ -219,7 +264,9 @@ function displayShoppingList() {
 function isLoggedIn() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            isPrivateShopper()
             displayShoppingList();
+            isOrder();
         } else {
             window.location.href = 'login.html';
         }
@@ -227,6 +274,60 @@ function isLoggedIn() {
 }
 isLoggedIn();
 
+function isOrder() {
+    var user = firebase.auth().currentUser;
+    var userInfo = db.collection("users").doc(user.uid);
+
+    userInfo.get().then((doc) => {
+        showOrder(doc.data().isOrder, doc.data().shopperid);
+        
+    });
+}
+
+function showOrder(isOrder, shopperid) {
+    if (isOrder) {
+        var privateShopper = db.collection("users").where('__name__','==', shopperid);
+        privateShopper.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                showOrderTitles(doc);
+            });
+          });
+        shoppingListContainer.style.backgroundColor = 'grey';
+        shoppingListContainer.style.color = 'white';
+        addButton.style.display = "none";
+        orderButton.style.display = "none";
+        shoppingListContainer.style.pointerEvents = "none";
+
+    } else {
+        shoppingListContainer.style.backgroundColor = 'white';
+        shoppingListContainer.style.color = 'black';
+        addButton.style.display = "block";
+        orderButton.style.display = "inline";
+        shoppingListContainer.style.pointerEvents = "auto";
+        orderInfo.style.display = "none";
+    }
+}
+
+function showOrderTitles(shopper) {
+    orderInfo.style.display = "block";
+    shopperInfo.innerHTML = shopper.data().name;
+}
+
+function isPrivateShopper() {
+    var user = firebase.auth().currentUser;
+    var userInfo = db.collection("users").doc(user.uid);
+
+    userInfo.get().then((doc) => {
+        redirect(doc.data().isShopper);
+    });
+}
+
+function redirect(isShopper) {
+    if (isShopper) {
+        window.location.href = 'index-private-shopper.html';
+    } else {
+    }
+}
 
 function sayHello(){
     firebase.auth().onAuthStateChanged(function(somebody){
@@ -242,5 +343,99 @@ function sayHello(){
     })
 }
 sayHello();
-console.log(localStorage);
+
+function orderButtonClick() {
+    showMatchModal();
+}
+
+function cancelOrderButtonClick() {
+    showCancelModal();
+}
+
+function matchButtonClick() {
+    var privateShopper = db.collection("users").where('isAvailable','==', true);
+    matchStatus.innerHTML = "Finding a private shopper for you..."
+    matchView.style.height =  "100px";
+    setTimeout(function(){ 
+        privateShopper.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                populateMatch(doc);
+            });
+          });
+    }, 1500);
+
+      matchButton.setAttribute("class", "btn btn-primary disabled");
+}
+function populateMatch(shopper) {
+    var name = shopper.data().name;
+    var id = shopper.id;
+
+    matchView.style.height =  "245px";
+
+    matchStatus.innerHTML = "You have been matched"
+    matchName.innerHTML = name;
+    matchInfo.innerHTML = "You will recieve an update with the amount owed.";
+    matchButton.setAttribute("class", "btn btn-primary");
+    matchButton.innerHTML = "Close";
+    matchButton.setAttribute("onclick", "hideMatchModal()");
+
+    var user = firebase.auth().currentUser;
+
+    db.collection("users").doc(user.uid).update({
+        isOrder: true,
+        shopperid: id
+    })
+
+    db.collection("users").doc(id).update({
+        isAvailable: false
+    })
+
+    showOrder(true, id);
+
+    db.collection("users/" + (id) + "/pendingOrders").add({
+        cost: 0,
+        userid: user.uid,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+
+}
+
+function cancelOrder() {
+    var user = firebase.auth().currentUser;
+    var userInfo = db.collection("users").doc(user.uid);
+    
+
+    userInfo.get().then((doc) => {
+        removeOrder(doc.data().shopperid);
+        
+    });
+
+
+}
+
+
+function removeOrder(id) {
+    var user = firebase.auth().currentUser;
+    var order = db.collection("users/" + (id) + "/pendingOrders").where('userid','==', user.uid);
+
+    order.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            doc.ref.delete();
+        });
+      });
+
+    db.collection("users").doc(id).update({
+        isAvailable: true
+    })
+
+    db.collection("users").doc(user.uid).update({
+        isOrder: false,
+        shopperid: ""
+    })
+    hideCancelModal();
+    orderButton.setAttribute("class", "btn btn-primary disabled");
+    isOrder();
+
+}
 //firebase.auth().signOut()         USE THIS TO LOG OUT USER.

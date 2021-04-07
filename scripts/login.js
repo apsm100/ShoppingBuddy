@@ -23,10 +23,12 @@ var uiConfig = {
             //write to firestore
             name: user.displayName, //"users" collection
             email: user.email, //with authenticated user's ID (user.uid)
+            isOrder: false,
+            shopperid: 0
           })
           .then(function () {
             console.log("New user added to firestore");
-            window.location.assign("main.html"); //re-direct to main.html after signup
+            window.location.assign("index.html"); //re-direct to main.html after signup
           })
           .catch(function (error) {
             console.log("Error adding new user: " + error);
@@ -44,7 +46,7 @@ var uiConfig = {
   },
   // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
   signInFlow: "popup",
-  signInSuccessUrl: "main.html",
+  signInSuccessUrl: "index.html",
   signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.
     //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -61,3 +63,21 @@ var uiConfig = {
 };
 // The start method will wait until the DOM is loaded.
 ui.start("#firebaseui-auth-container", uiConfig);
+
+var loginBox = document.getElementById("login");
+var mainView = document.getElementById("main-view");
+var logos = document.getElementById("logos");
+var loginButton = document.getElementById("login-btn");
+var loginUI = document.getElementById("firebaseui-auth-container");
+
+function showLogin() {
+  document.body.style.backgroundColor = "whitesmoke";
+  logos.style.height = "40px";
+  loginButton.style.display = "none";
+
+  loginBox.style.display = "inline";
+  
+  setTimeout(function(){ 
+    loginUI.style.opacity = 1;
+}, 250);
+}
