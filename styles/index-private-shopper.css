@@ -1,16 +1,16 @@
 #timestamp {
-  float:right;
-  margin-bottom:5px;
-  margin-right:2px;
-  width:200px;
-  text-align:right;
-  margin-top:5px;
+  float: right;
+  margin-bottom: 5px;
+  margin-right: 2px;
+  width: 200px;
+  text-align: right;
+  margin-top: 5px;
 }
-#customer-name{
-  float:left;
-  margin-bottom:5px;
-  margin-left:2px;
-  margin-top:5px;
+#customer-name {
+  float: left;
+  margin-bottom: 5px;
+  margin-left: 2px;
+  margin-top: 5px;
 }
 .card {
   margin-top: 30px;
@@ -24,13 +24,12 @@
 
 #status {
   font-size: 70%;
-  
 }
 
 #shopping-list-header {
   text-align: center;
   margin-top: 2em;
-  margin-bottom:2em;
+  margin-bottom: 2em;
 }
 
 #shopping-list {
@@ -55,8 +54,6 @@
   background-color: rgba(0, 0, 0, 0.2);
   opacity: 0;
 }
-
-
 
 #addto-shopping-list {
   width: 250px;
@@ -111,8 +108,8 @@
 }
 
 #item-name {
-  float:left;
-  margin-right:14px;
+  float: left;
+  margin-right: 14px;
 }
 
 #item-name-input,
@@ -123,7 +120,6 @@
 
 #category-name-input {
   font-style: italic;
-
 }
 #quantity-input {
   max-width: 3em;
@@ -136,7 +132,7 @@ input {
   width: 65px;
   float: right;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='14px' width='85px'><text x='2' y='13' fill='lightgray' font-size='16' font-family='arial'>$</text></svg>");
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position-y: center;
   padding-left: 14px;
   margin-left: 18px;
@@ -148,10 +144,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .check-mark {
- width:24px;
- margin-right:5px;
- margin-left: 10px;
- float:right;
+  width: 24px;
+  margin-right: 5px;
+  margin-left: 10px;
+  float: right;
 }
 input:focus {
   outline: none;
@@ -163,8 +159,8 @@ input:focus {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   gap: 100px;
-  padding-left:50px;
-  padding-right:50px;
+  padding-left: 50px;
+  padding-right: 50px;
   grid-template-areas: "menu1";
 }
 
@@ -174,5 +170,3 @@ input:focus {
 .menu2 {
   grid-area: menu2;
 }
-
-

@@ -23,20 +23,32 @@
         <div class="logo">
           <h1>shoppingbuddy</h1>
           <div class="position-absolute top-50 end-0 translate-middle">
-            <button onclick="firebase.auth().signOut()" class="btn btn-secondary">Log Out</button></div>
+            <button onclick="firebase.auth().signOut()" class="btn btn-secondary">Log Out</button>
+        </div>
         </div>
       </div>
     <div id="main-container" class="container-fluid">
         <div class="grid-container">
             <div class="menu1">
-                <h5 id="shopping-list-header"><span id="Name-goes-here"></span>List</h5>
+                <div class="thehead">
+                    <h5 id="shopping-list-header"><span id="Name-goes-here"></span>List</h5>
+                    <hr>
+                </div>
+                
                 <div id="add-button" onclick="showAddToModal()">+</div>
+                
                 <div class="card" id="shopping-list">
                 </div>
+                
                 <div class="text-center">
+                    <div>
+                        <h6><p class="text-secondary">Click on an item to remove it from your list</p></h6>
+                    </div>
+                    
                     <button type="button" id="order-btn" class="btn btn-primary" onclick="orderButtonClick()">Order</button>
                 </div>
                 <div class="text-center" id="order-info">
+                    
                     <h5 id=shopper-title>Order</h5>
                     <br>
                     <h3 id="shopper-info"></h3>
@@ -48,11 +60,15 @@
             </div>
             <div id="modal-overlay">
                 <div class="card" id="addto-shopping-list">
-                    <div class="card-body">
+                    <div class="card-body thecard">
                         <input id="item-name-input" oninput="searchTyping()" type="search" tabindex="0"
-                            placeholder="item">
-                        <input id="category-name-input" type="search" placeholder="category">
-                        <input id="quantity-input" type="number" placeholder="#of">
+                            placeholder="Item" class="p-2">
+                        <input id="category-name-input" type="search" placeholder="Category" class="p-2">
+                        <div class="number-input">
+                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                            <input id="quantity-input" placeholder="Quantity" class="quantity" min="1" name="quantity" value="1" type="number">
+                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                          </div>
                         <a onclick="addItem()" class="btn btn-primary disabled" id="add-item-button">Add</a>
 
                     </div>
