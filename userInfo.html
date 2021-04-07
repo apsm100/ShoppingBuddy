@@ -181,6 +181,8 @@
     ></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
     <script src="scripts/firebase_api.js"></script>
     <script src="scripts/userInfo.js"></script>
 
@@ -188,7 +190,7 @@
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
 
-    <script>
+<script>
       firebase.auth().onAuthStateChanged(function(user) {
       console.log(user);
       function getInfo() {
