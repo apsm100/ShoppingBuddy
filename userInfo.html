@@ -169,6 +169,8 @@
     ></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
     <script src="scripts/firebase_api.js"></script>
     <script src="scripts/userInfo.js"></script>
 
@@ -176,7 +178,9 @@
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
 
-    <script>
+<script>
+      firebase.auth().onAuthStateChanged(function(user) {
+      console.log(user);
       function getInfo() {
         var name = document.getElementById("inputName4").value;
         var address = document.getElementById("inputAddress").value;
@@ -187,7 +191,9 @@
         var instructions = document.getElementById("inputInstructions").value;
         var postal = document.getElementById("inputZip").value;
         console.log(name);
-        var users = db.collection("users");
+        //var user = firebase.auth().currentUser;
+        var users = db.collection("users/" + user.uid);
+        //var users = db.collection("users");
         if (
           name != "" &&
           address != "" &&
@@ -197,7 +203,8 @@
           postal != "" &&
           instructions != "" 
           //address2 != ""
-        ) {
+        )
+         {
           users.add({
             name: name,
             address: address,
@@ -212,6 +219,7 @@
             "<div class='card border-success mb-3 text-center'><div class='card-header'>Your profile is updated.</h5><a class='btn btn-primary' href='index.html' role='button'>Take me to the home page!</a></div>";
         }
       }
+    });
     </script>
   </body>
 </html>
