@@ -52,11 +52,11 @@
                 <div class="card" id="addto-shopping-list">
                     <div class="card-body thecard">
                         <input id="item-name-input" oninput="searchTyping()" type="search" tabindex="0"
-                            placeholder="Item" class="p-2">
-                        <input id="category-name-input" type="search" placeholder="Category" class="p-2">
+                            placeholder="item" class="p-2">
+                        <input id="category-name-input" type="search" placeholder="category" class="p-2">
                         <div class="number-input">
                             <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-                            <input id="quantity-input" placeholder="Quantity" class="quantity" min="1" name="quantity" value="1" type="number">
+                            <input id="quantity-input" placeholder="quantity" class="quantity" min="1" name="quantity" value="1" type="number">
                             <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                           </div>
                         <a onclick="addItem()" class="btn btn-primary disabled" id="add-item-button">Add</a>
