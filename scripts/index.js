@@ -122,8 +122,10 @@ function addItem() {
         quantity: quantityVal,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }
-    shoppingList.add(item);
-    populateShoppingList(item, true);
+    shoppingList.add(item).then(doc => {
+        populateHelper(doc.id);
+    })
+    
 
     itemNameInput.value = "";
     categoryInput.value = "";
@@ -136,14 +138,26 @@ function addItem() {
     }, 500);
 }
 
-//When a user intitates a delete item from their shopping list.
-//@param itemVal The name of the item.
-//@param categoryVal The category of the item.
-//@param listItem The DOM element which represents the item to be deleted.
-function deleteItem (itemVal, categoryVal, listItem) {
+//Helper function for adding an item to shopping list. Needed to reload the data and ID.
+//@param docID The newly created docID.
+function populateHelper(docID) {
     var user = firebase.auth().currentUser;
 
-    var shoppingListItem = db.collection("users/" + user.uid + "/shoppingList").where('item','==',itemVal).where('category','==',categoryVal);
+    var shoppingListItem = db.collection("users/" + user.uid + "/shoppingList").where('__name__','==',docID);
+
+    shoppingListItem.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            populateShoppingList(doc, true);
+        });
+      });
+} 
+
+//When a user intitates a delete item from their shopping list.
+//@param itemID The ID of the item to be deleted.
+function deleteItem (itemID) {
+    var user = firebase.auth().currentUser;
+
+    var shoppingListItem = db.collection("users/" + user.uid + "/shoppingList").where('__name__','==', itemID);
 
     shoppingListItem.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -151,7 +165,8 @@ function deleteItem (itemVal, categoryVal, listItem) {
         });
       });
 
-    hideItem(listItem);
+    var itemToHide = document.getElementById("item" + itemID);
+    hideItem(itemToHide);
 }
 
 //Helper function for deleteItem, animates the deletion of an item without having to reload entire list.
@@ -213,11 +228,9 @@ function populateSearch(item) {
 //@param animate Boolean that is false if animate is disabled (on page load).
 function populateShoppingList(itemDat, animate) {
     a = document.createElement("div");
-    a.setAttribute("class", "card-body");
-    a.setAttribute("id", "shopping-list-item");
+    a.setAttribute("class", "card-body shopping-list-item");
 
-    a.setAttribute("onclick", "deleteItem('" + itemDat.item + "', '" + itemDat.category + "', this)");
-
+    a.setAttribute("id", "item" + itemDat.id);
 
     itemName = document.createElement("span");
     itemName.setAttribute("id", "item-name");
@@ -225,11 +238,29 @@ function populateShoppingList(itemDat, animate) {
     c = document.createElement("div");
     c.setAttribute("id", "item-category");
 
-    itemName.innerHTML = itemDat.quantity + " x " + itemDat.item;
-    c.innerHTML = itemDat.category;
+    itemName.innerHTML = itemDat.data().quantity + " x " + itemDat.data().item;
+    c.innerHTML = itemDat.data().category;
 
+    d = document.createElement("div");
+    d.setAttribute("class", "delete-btn");
+    d.setAttribute("id", "delete" + itemDat.id);
+    d.setAttribute("onclick", "deleteItem('" + itemDat.id + "', this)");
+    d.innerHTML = "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z' stroke='#111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M15 9L9 15' stroke='#111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M9 9L15 15' stroke='#111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>"
+    d.style.opacity = 0;
     a.appendChild(itemName);
     a.appendChild(c);
+    a.appendChild(d);
+   
+    
+    a.addEventListener("mouseenter", function(event) {
+        z = document.getElementById("delete" + itemDat.id);
+        z.style.opacity = 100;
+      });
+    
+    a.addEventListener("mouseleave", function(event) {
+        z = document.getElementById("delete" + itemDat.id);
+        z.style.opacity = 0;
+      });
 
     marginT = a.style.marginTop;
     marginB = a.style.marginBottom;
@@ -256,7 +287,7 @@ function populateShoppingList(itemDat, animate) {
         a.style.paddingTop = paddingT;
         a.style.paddingBottom = paddingB;
         a.style.height = height;
-    }, 0);
+    }, 50);
 }
 
 //Reads firebasedb and sends each data to populate each shoppinglist item.
@@ -268,7 +299,7 @@ function displayShoppingList() {
     shoppingList.get()
         .then(function (snap) {
             snap.forEach(function (doc) {
-                populateShoppingList(doc.data());
+                populateShoppingList(doc);
             })
 
         })

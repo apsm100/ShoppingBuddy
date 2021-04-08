@@ -20,8 +20,13 @@
   margin-right: auto;
 }
 
-#shopping-list-item {
+.shopping-list-item {
   border-top: rgba(29, 18, 18, 0.1);
+  
+}
+
+.shopping-list-item:nth-child(n+2) {
+  border-top: 0.5px solid gainsboro;
 }
 
 #modal-overlay {
@@ -101,6 +106,10 @@
   margin-right: 10%;
 }
 
+#order-btn {
+  margin-top: 1em;
+}
+
 #cancel-order-btn {
   margin-right: 0%;
 }
@@ -111,9 +120,12 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+.delete-btn {
+  float: right;
+  margin-right: 0.5em;
+}
 #search-item:hover,
-#shopping-list-item:hover {
+.shopping-list-item:hover {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 #search-item-category,
