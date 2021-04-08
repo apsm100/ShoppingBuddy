@@ -35,7 +35,7 @@
                 </div>
                 
                 <div class="text-center">
-                    <button type="button" id="order-btn" class="btn btn-primary" onclick="orderButtonClick()">Order</button>
+                    <button type="button" id="order-btn" class="btn btn-primary btn-lg" onclick="orderButtonClick()">Order</button>
                 </div>
                 <div class="text-center" id="order-info">
                     
@@ -44,8 +44,8 @@
                     <h3 id="shopper-info"></h3>
                     <h3 id="shopper-price">$0</h3>
                     <br><br>
-                    <button type="button" id="cancel-order-btn" class="btn btn-primary disabled" onclick="">Pay</button>
-                    <button type="button" id="cancel-order-btn" class="btn btn-primary" onclick="cancelOrderButtonClick()">Cancel Order</button>
+                    <button type="button" id="cancel-order-btn" class="btn btn-primary disabled btn-lg" onclick="">Pay</button>
+                    <button type="button" id="cancel-order-btn" class="btn btn-primary btn-lg" onclick="cancelOrderButtonClick()">Cancel Order</button>
                 </div>
             </div>
             <div id="modal-overlay">
@@ -56,10 +56,10 @@
                         <input id="category-name-input" type="search" placeholder="category" class="p-2">
                         <div class="number-input">
                             <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-                            <input id="quantity-input" placeholder="quantity" class="quantity" min="1" name="quantity" value="1" type="number">
+                            <input id="quantity-input" placeholder="# of" class="quantity" min="1" name="quantity" value="1" type="number">
                             <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                           </div>
-                        <a onclick="addItem()" class="btn btn-primary disabled" id="add-item-button">Add</a>
+                        <a onclick="addItem()" class="btn btn-primary disabled btn-lg" id="add-item-button">Add</a>
 
                     </div>
                     <div id="suggestions">
@@ -73,7 +73,7 @@
                         <h3 id="match-name"></h3>
                         <br>
                         <h6 id="match-info"></h6>
-                        <a onclick="matchButtonClick()" class="btn btn-primary" id="match-btn">Match</a>
+                        <a onclick="matchButtonClick()" class="btn btn-primary btn-lg" id="match-btn">Match</a>
                     </div>
                 </div>
             </div>
@@ -81,8 +81,8 @@
                 <div class="card" id="view-cancel">
                     <div class="card-body">
                         <h5 id="match-status">Are you sure you want to cancel your order?</h5>
-                        <a onclick="hideCancelModal()" class="btn btn-primary" id="no-cancel">No</a>
-                        <a onclick="cancelOrder()" class="btn btn-primary" id="yes-cancel">Yes</a>
+                        <a onclick="hideCancelModal()" class="btn btn-primary btn-lg" id="no-cancel">No</a>
+                        <a onclick="cancelOrder()" class="btn btn-primary btn-lg" id="yes-cancel">Yes</a>
                         
                     </div>
                 </div>

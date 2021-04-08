@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
-
+* {
+    font-size:103%;
+  }
 .top-nav-bar {
     position: absolute;
     top: 0;

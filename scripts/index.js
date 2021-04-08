@@ -28,18 +28,20 @@ var orderButton = document.getElementById("order-btn");
 var orderInfo = document.getElementById("order-info");
 var shopperInfo = document.getElementById("shopper-info");
 
+//Parses searchJSON from search.js
 var search = JSON.parse(searchJSON);
 search = search["search"];
 
+//Shows shopping item overlay with animation.
 function showAddToModal() {
     modalOverlay.style.display = "block";
     itemNameInput.focus();
     setTimeout(function(){ 
         modalOverlay.style.opacity = 1; 
     }, 0);
-
 }
 
+//Listener for window click to close a modal overlay.
 window.onclick = function(event) {
     if (event.target == modalOverlay) {
       modalOverlay.style.opacity = 0;
@@ -49,49 +51,54 @@ window.onclick = function(event) {
     } else if (event.target == matchModalOverlay) {
         hideMatchModal()
     }
-
   }
 
-
+//Hides the match modal overlay with animation.
 function hideMatchModal() {
     matchModalOverlay.style.opacity = 0;
     setTimeout(function(){ 
         matchModalOverlay.style.display = "none";
     }, 250);
 }
+
+//Shows the match modal overlay with animation.
 function showMatchModal() {
     matchModalOverlay.style.display = "block";
     setTimeout(function(){ 
         matchModalOverlay.style.opacity = 1; 
     }, 0);
-
 }
 
+//Hides the cancel modal overlay with animation.
 function hideCancelModal() {
     cancelModalOverlay.style.opacity = 0;
     setTimeout(function(){ 
         cancelModalOverlay.style.display = "none";
     }, 250);
 }
+
+//Shows the cancel modal overlay with animation.
 function showCancelModal() {
     cancelModalOverlay.style.display = "block";
     setTimeout(function(){ 
         cancelModalOverlay.style.opacity = 1; 
     }, 0);
-
 }
 
+//When a user is typing in the add item modal overlay, this function is called to initiate search.
 function searchTyping() {
     if (itemNameInput.value == ""){
         searchSuggestion.innerHTML = "";
-        addItemButton.setAttribute("class", "btn btn-primary disabled");
+        addItemButton.setAttribute("class", "btn btn-primary disabled btn-lg");
     } else {
         searchdb(itemNameInput.value);
-        addItemButton.setAttribute("class", "btn btn-primary");
+        addItemButton.setAttribute("class", "btn btn-primary btn-lg");
     }
-
 }
 
+//When a user selects a suggestion from the add item modal overlay after searchTyping.
+//@param suggestion The name of a suggestion item.
+//@param category The category of a suggestion item.
 function suggestionClick(suggestion, category) {
     itemNameInput.value = suggestion;
     categoryInput.value = category;
@@ -99,9 +106,9 @@ function suggestionClick(suggestion, category) {
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
-
 }
 
+//When a user clicks add from add item modal overlay.
 function addItem() {
     itemVal = itemNameInput.value;
     categoryVal = categoryInput.value;
@@ -121,16 +128,18 @@ function addItem() {
     itemNameInput.value = "";
     categoryInput.value = "";
     quantityInput.value = "";
-    addItemButton.setAttribute("class", "btn btn-primary disabled");
+    addItemButton.setAttribute("class", "btn btn-primary disabled btn-lg");
     itemNameInput.focus();
     modalOverlay.style.backgroundColor = "rgba(0,0,0,0.0)";
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
     }, 500);
- 
 }
 
-
+//When a user intitates a delete item from their shopping list.
+//@param itemVal The name of the item.
+//@param categoryVal The category of the item.
+//@param listItem The DOM element which represents the item to be deleted.
 function deleteItem (itemVal, categoryVal, listItem) {
     var user = firebase.auth().currentUser;
 
@@ -143,9 +152,10 @@ function deleteItem (itemVal, categoryVal, listItem) {
       });
 
     hideItem(listItem);
-
 }
 
+//Helper function for deleteItem, animates the deletion of an item without having to reload entire list.
+//@param listItem The DOM element which represents the item to be deleted.
 function hideItem(listItem) {
     listItem.style.opacity= 0;
     listItem.style.marginTop = 0;
@@ -158,6 +168,8 @@ function hideItem(listItem) {
     }, 250);
 }
 
+//Searches search.js for index matches.
+//@param item Query to be index searched.
 function searchdb(item) {
     searchSuggestion.innerHTML = "";
     for (var s in search) {
@@ -169,6 +181,8 @@ function searchdb(item) {
     }
 }
 
+//Populates the suggestion DOM element with search elements.
+//@param item JSON object to be created and added to suggestion DOM.
 function populateSearch(item) {
     a = document.createElement("div");
     a.setAttribute("class", "card");
@@ -192,10 +206,11 @@ function populateSearch(item) {
     a.appendChild(b);
 
     searchSuggestion.appendChild(a);
-
-    
 }
 
+//Populates shoppingList by created and appending DOM elements.
+//@param itemDat Object that holds the item information.
+//@param animate Boolean that is false if animate is disabled (on page load).
 function populateShoppingList(itemDat, animate) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body");
@@ -242,10 +257,9 @@ function populateShoppingList(itemDat, animate) {
         a.style.paddingBottom = paddingB;
         a.style.height = height;
     }, 0);
-
 }
 
-
+//Reads firebasedb and sends each data to populate each shoppinglist item.
 function displayShoppingList() {
     var user = firebase.auth().currentUser;
     var shoppingList = db.collection("users/" + user.uid + "/shoppingList").orderBy('timestamp', "asc");
@@ -260,7 +274,7 @@ function displayShoppingList() {
         })
 }
 
-
+//Checks to see if user is logged in.
 function isLoggedIn() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -274,6 +288,7 @@ function isLoggedIn() {
 }
 isLoggedIn();
 
+//Checks to see if the user has a current order in firebase DB.
 function isOrder() {
     var user = firebase.auth().currentUser;
     var userInfo = db.collection("users").doc(user.uid);
@@ -284,6 +299,9 @@ function isOrder() {
     });
 }
 
+//Shows the current order if isOrder is true.
+//@param isOrder Boolean If order is true this is true.
+//@param shopperid The private shoppers UID.
 function showOrder(isOrder, shopperid) {
     if (isOrder) {
         var privateShopper = db.collection("users").where('__name__','==', shopperid);
@@ -308,11 +326,14 @@ function showOrder(isOrder, shopperid) {
     }
 }
 
+//Shows the private shoppers name.
+//@param shopper Object that contains the private shoppers user information.
 function showOrderTitles(shopper) {
     orderInfo.style.display = "block";
     shopperInfo.innerHTML = shopper.data().name;
 }
 
+//Checks to see if user is a private shopper.
 function isPrivateShopper() {
     var user = firebase.auth().currentUser;
     var userInfo = db.collection("users").doc(user.uid);
@@ -322,6 +343,8 @@ function isPrivateShopper() {
     });
 }
 
+//Redirects user to the correct private shopper index if they are a private shopper.
+//@param isShopper Boolean true if user is a private shopper. 
 function redirect(isShopper) {
     if (isShopper) {
         window.location.href = 'index-private-shopper.html';
@@ -329,6 +352,7 @@ function redirect(isShopper) {
     }
 }
 
+//Gets current users name and displays it in the DOM.
 function sayHello(){
     firebase.auth().onAuthStateChanged(function(somebody){
         if(somebody){
@@ -344,14 +368,17 @@ function sayHello(){
 }
 sayHello();
 
+//Order button click function.
 function orderButtonClick() {
     showMatchModal();
 }
 
+//Cancel order button click function.
 function cancelOrderButtonClick() {
     showCancelModal();
 }
 
+//Match button click function.
 function matchButtonClick() {
     var privateShopper = db.collection("users").where('isAvailable','==', true);
     matchStatus.innerHTML = "Finding a private shopper for you..."
@@ -364,18 +391,21 @@ function matchButtonClick() {
           });
     }, 1500);
 
-      matchButton.setAttribute("class", "btn btn-primary disabled");
+      matchButton.setAttribute("class", "btn btn-primary disabled btn-lg");
 }
+
+//Populates the DOM if a match occurs.
+//@param shopper Object that contains matched private shopper information. 
 function populateMatch(shopper) {
     var name = shopper.data().name;
     var id = shopper.id;
 
-    matchView.style.height =  "245px";
+    matchView.style.height =  "265px";
 
     matchStatus.innerHTML = "You have been matched"
     matchName.innerHTML = name;
     matchInfo.innerHTML = "You will recieve an update with the amount owed.";
-    matchButton.setAttribute("class", "btn btn-primary");
+    matchButton.setAttribute("class", "btn btn-primary btn-lg");
     matchButton.innerHTML = "Close";
     matchButton.setAttribute("onclick", "hideMatchModal()");
 
@@ -397,24 +427,21 @@ function populateMatch(shopper) {
         userid: user.uid,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
-
-
 }
 
+//Cancels current order.
 function cancelOrder() {
     var user = firebase.auth().currentUser;
     var userInfo = db.collection("users").doc(user.uid);
     
-
     userInfo.get().then((doc) => {
         removeOrder(doc.data().shopperid);
         
     });
-
-
 }
 
-
+//Helper function for cancelOrder. Removes order information from private shopper and current user.
+//@param id Private shopper UID.
 function removeOrder(id) {
     var user = firebase.auth().currentUser;
     var order = db.collection("users/" + (id) + "/pendingOrders").where('userid','==', user.uid);
@@ -434,8 +461,6 @@ function removeOrder(id) {
         shopperid: ""
     })
     hideCancelModal();
-    orderButton.setAttribute("class", "btn btn-primary disabled");
+    orderButton.setAttribute("class", "btn btn-primary disabled btn-lg");
     isOrder();
-
 }
-//firebase.auth().signOut()         USE THIS TO LOG OUT USER.
