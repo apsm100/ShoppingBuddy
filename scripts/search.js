@@ -15,6 +15,21 @@
         '{ "query":"orange juice" , "category":"food" },' +
         '{ "query":"pie" , "category":"food" },' +
         '{ "query":"lemon" , "category":"food" },' +
+        '{ "query":"milk" , "category":"food" },' +
+        '{ "query":"yogurt" , "category":"food" },' +
+        '{ "query":"granola bar" , "category":"food" },' +
+        '{ "query":"granola" , "category":"food" },' +
+        '{ "query":"fries" , "category":"food" },' +
+        '{ "query":"onions" , "category":"food" },' +
+        '{ "query":"lettuce" , "category":"food" },' +
+        '{ "query":"chocolate" , "category":"food" },' +
+        '{ "query":"cookies" , "category":"food" },' +
+        '{ "query":"dark chocolate" , "category":"food" },' +
+        '{ "query":"bacon" , "category":"food" },' +
+        '{ "query":"green apple" , "category":"food" },' +
+        '{ "query":"blue cheese" , "category":"food" },' +
+        '{ "query":"apple juice" , "category":"food" },' +
+        '{ "query":"lemon juice" , "category":"food" },' +
         '{ "query":"grapefruit" , "category":"food"},';
 
 
@@ -32,6 +47,15 @@
     '{ "query":"phone" , "category":"electronics" },' +
     '{ "query":"headphones" , "category":"electronics" },' +
     '{ "query":"speakers" , "category":"electronics" },';
+
+    //health
+    searchJSON +=
+    '{ "query":"tylenol" , "category":"health" },' +
+    '{ "query":"toothpaste" , "category":"health" },' +
+    '{ "query":"toothbrush" , "category":"health" },' +
+    '{ "query":"floss" , "category":"health" },' +
+    '{ "query":"deodorant" , "category":"health" },' +
+    '{ "query":"cough medicine" , "category":"health" },';
 
     //clothing
     searchJSON +=
