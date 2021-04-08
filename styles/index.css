@@ -140,7 +140,7 @@
 
 #suggestions {
   padding-top:10px;
-  max-height: 275px;
+  max-height: 40vh;
   overflow-y: scroll;
 }
 
@@ -201,6 +201,10 @@ input:focus {
   border: 1px solid gainsboro;
 }
 
+::-webkit-input-placeholder { 
+  color:gainsboro;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -225,28 +229,30 @@ input[type="number"] {
   appearance: textfield;
 }
 
+input[type="number"]:focus {
+  outline: none;
+  border: none;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
 .number-input {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   display: inline-flex;
   width: 11rem;
   margin-top: 0.5rem;
 }
 
-.number-input,
-.number-input * {
-  box-sizing: border-box;
-}
 
 .number-input button {
   outline: none;
   -webkit-appearance: none;
   background-color: transparent;
-  border: none;
+  border: 1px solid gray;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
   width: 3rem;
@@ -254,6 +260,7 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
   margin: 0;
   position: relative;
+  
 }
 
 .number-input button:before,
@@ -273,7 +280,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .number-input input[type="number"] {
   max-width: 1rem;
   padding: 0.5rem;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-width: 0 1px;
   height: 2rem;
   text-align: center;

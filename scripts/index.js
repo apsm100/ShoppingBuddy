@@ -102,7 +102,10 @@ function searchTyping() {
 function suggestionClick(suggestion, category) {
     itemNameInput.value = suggestion;
     categoryInput.value = category;
-    quantityInput.value = 1;
+    if (quantityInput.value == "") {
+        quantityInput.value = 1;
+    }
+    
     searchSuggestion.innerHTML = "";
  
     itemNameInput.focus();
@@ -123,7 +126,7 @@ function addItem() {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }
     shoppingList.add(item).then(doc => {
-        populateHelper(doc.id);
+        populateShoppingList(item.quantity, item.item, item.category, doc.id, true);
     })
     
 
@@ -132,25 +135,15 @@ function addItem() {
     quantityInput.value = "";
     addItemButton.setAttribute("class", "btn btn-primary disabled btn-lg");
     itemNameInput.focus();
-    modalOverlay.style.backgroundColor = "rgba(0,0,0,0.0)";
+    setTimeout(function(){ 
+        modalOverlay.style.backgroundColor = "rgba(0,0,0,0.0)";
+    }, 50);
+    
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
-    }, 500);
+    }, 600);
 }
 
-//Helper function for adding an item to shopping list. Needed to reload the data and ID.
-//@param docID The newly created docID.
-function populateHelper(docID) {
-    var user = firebase.auth().currentUser;
-
-    var shoppingListItem = db.collection("users/" + user.uid + "/shoppingList").where('__name__','==',docID);
-
-    shoppingListItem.get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            populateShoppingList(doc, true);
-        });
-      });
-} 
 
 //When a user intitates a delete item from their shopping list.
 //@param itemID The ID of the item to be deleted.
@@ -224,27 +217,31 @@ function populateSearch(item) {
 }
 
 //Populates shoppingList by created and appending DOM elements.
-//@param itemDat Object that holds the item information.
+//@param quantity, item, category, id, animate  Item information.
 //@param animate Boolean that is false if animate is disabled (on page load).
-function populateShoppingList(itemDat, animate) {
+function populateShoppingList(quantity, item, category, id, animate) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body shopping-list-item");
 
-    a.setAttribute("id", "item" + itemDat.id);
+    a.setAttribute("id", "item" + id);
 
     itemName = document.createElement("span");
     itemName.setAttribute("id", "item-name");
 
     c = document.createElement("div");
     c.setAttribute("id", "item-category");
-
-    itemName.innerHTML = itemDat.data().quantity + " x " + itemDat.data().item;
-    c.innerHTML = itemDat.data().category;
+    if (quantity == "") {
+        itemName.innerHTML = item;
+    } else {
+        itemName.innerHTML = quantity + " x " + item;
+    }
+   
+    c.innerHTML = category;
 
     d = document.createElement("div");
     d.setAttribute("class", "delete-btn");
-    d.setAttribute("id", "delete" + itemDat.id);
-    d.setAttribute("onclick", "deleteItem('" + itemDat.id + "', this)");
+    d.setAttribute("id", "delete" + id);
+    d.setAttribute("onclick", "deleteItem('" + id + "', this)");
     d.innerHTML = "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z' stroke='#111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M15 9L9 15' stroke='#111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M9 9L15 15' stroke='#111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>"
     d.style.opacity = 0;
     a.appendChild(itemName);
@@ -253,12 +250,12 @@ function populateShoppingList(itemDat, animate) {
    
     
     a.addEventListener("mouseenter", function(event) {
-        z = document.getElementById("delete" + itemDat.id);
+        z = document.getElementById("delete" + id);
         z.style.opacity = 100;
       });
     
     a.addEventListener("mouseleave", function(event) {
-        z = document.getElementById("delete" + itemDat.id);
+        z = document.getElementById("delete" + id);
         z.style.opacity = 0;
       });
 
@@ -299,7 +296,7 @@ function displayShoppingList() {
     shoppingList.get()
         .then(function (snap) {
             snap.forEach(function (doc) {
-                populateShoppingList(doc);
+                populateShoppingList(doc.data().quantity, doc.data().item, doc.data().category, doc.id);
             })
 
         })
@@ -346,7 +343,6 @@ function showOrder(isOrder, shopperid) {
         addButton.style.display = "none";
         orderButton.style.display = "none";
         shoppingListContainer.style.pointerEvents = "none";
-
     } else {
         shoppingListContainer.style.backgroundColor = 'white';
         shoppingListContainer.style.color = 'black';
