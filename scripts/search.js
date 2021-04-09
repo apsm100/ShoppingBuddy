@@ -21,7 +21,7 @@
         '{ "query":"granola" , "category":"food" },' +
         '{ "query":"fries" , "category":"food" },' +
         '{ "query":"onions" , "category":"food" },' +
-        '{ "query":"lettuce" , "category":"food" },' +
+        '{ "query":"romaine lettuce" , "category":"food" },' +
         '{ "query":"chocolate" , "category":"food" },' +
         '{ "query":"cookies" , "category":"food" },' +
         '{ "query":"dark chocolate" , "category":"food" },' +
