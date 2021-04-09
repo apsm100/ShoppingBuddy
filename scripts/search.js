@@ -25,6 +25,8 @@
         '{ "query":"chocolate" , "category":"food" },' +
         '{ "query":"cookies" , "category":"food" },' +
         '{ "query":"dark chocolate" , "category":"food" },' +
+        '{ "query":"dog food" , "category":"food" },' +
+        '{ "query":"white chocolate" , "category":"food" },' +
         '{ "query":"bacon" , "category":"food" },' +
         '{ "query":"green apple" , "category":"food" },' +
         '{ "query":"blue cheese" , "category":"food" },' +
