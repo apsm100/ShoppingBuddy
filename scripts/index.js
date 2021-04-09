@@ -130,7 +130,7 @@ function addItem() {
         populateShoppingList(item.quantity, item.item, item.category, doc.id, true);
     })
     
-
+    searchSuggestion.innerHTML = "";
     itemNameInput.value = "";
     categoryInput.value = "";
     quantityInput.value = "";
@@ -138,12 +138,12 @@ function addItem() {
     itemNameInput.focus();
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.0)";
-        modalOverlay.style.opacity = 0.5;
-    }, 50);
+       
+    }, 250);
     
     setTimeout(function(){ 
         modalOverlay.style.backgroundColor = "rgba(0,0,0,0.2)";
-        modalOverlay.style.opacity = 1;
+        
     }, 600);
 }
 
@@ -491,6 +491,6 @@ function removeOrder(id) {
         shopperid: ""
     })
     hideCancelModal();
-    orderButton.style.display("none");
+    orderButton.style.display = "none";
     isOrder();
 }
