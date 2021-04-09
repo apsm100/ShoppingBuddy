@@ -4,6 +4,7 @@ var statusView = document.getElementById("status");
 var customerName = document.getElementById("customer-name");
 var timeStamp = document.getElementById("timestamp");
 
+//Checks if the private shopper has a pending order.
 function isPendingOrder() {
     var user = firebase.auth().currentUser;
     var pendingOrders = db.collection("users/" + user.uid + "/pendingOrders");
@@ -19,8 +20,8 @@ function isPendingOrder() {
         })
 }
 
-
-
+//Helper function for isPendingOrder and sends the customer id to display their information.
+//@param pending Pending data from the private shopper user data.
 function populatePending(pending) {
     var customerid = pending.data().userid;
     var timestamp = pending.data().timestamp;
@@ -31,6 +32,8 @@ function populatePending(pending) {
 
 }
 
+//Displays Customer information with customer ID.
+//@param customerid Customers id.
 function displayCustomer(customerid) {
     var userInfo = db.collection("users").doc(customerid);
 
@@ -40,11 +43,15 @@ function displayCustomer(customerid) {
     });
 }
 
+//Updates DOM to show customer information.
+//@param customer Holds customer data from DB.
 function updateCustomer(customer) {
     customerName.innerHTML = customer.data().name;
 
 }
 
+//Sends cusomter infromation to be populated and displayed.
+//@param customerid Customers id.
 function displayShoppingList(customerid) {
     var shoppingList = db.collection("users/" + customerid + "/shoppingList").orderBy('timestamp', "asc");
 
@@ -58,12 +65,12 @@ function displayShoppingList(customerid) {
         })
 }
 
+//Populates the shopping list to DOM elements.
+//@param item Shopping list item.
 function populateShoppingList(item) {
     a = document.createElement("div");
     a.setAttribute("class", "card-body");
     a.setAttribute("id", "shopping-list-item");
-
-    
 
     checkMark = document.createElement("div");
     checkMark.innerHTML = "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M20 6L9 17L4 12' stroke='grey' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
@@ -92,12 +99,10 @@ function populateShoppingList(item) {
     a.setAttribute("id", item.id);
 
     shoppingListContainer.appendChild(a);
-    
-
-
-
 }
 
+//Changes a shopping list item to completed.
+//param id Shopping list dom ID.
 function completeItem(id) {
     var item = document.getElementById(id);
     item.style.textDecoration = "line-through";
@@ -112,12 +117,13 @@ function completeItem(id) {
     input.style.backgroundColor = 'grey';
     input.style.borderColor = 'grey';
     input.style.color = 'white';
-
     
     // savePriceItem(id);
 
 }
 
+//Incomplete function, save to DB the changes made.
+//@param id Shopping list item ID.
 function savePriceItem(id) {
     var user = firebase.auth().currentUser;
     var pendingOrders = db.collection("users/" + user.uid + "/pendingOrders");
@@ -131,11 +137,10 @@ function savePriceItem(id) {
             })
 
         })
-   
-
 }
 
-
+//Incomplete helper function, saves price item to shopping list item.
+//@param id, doc The ID for saving to shopping list item.
 function parseSave(id, doc) {
     customerID = doc.data().userid;
     console.log(id)
@@ -143,10 +148,9 @@ function parseSave(id, doc) {
     console.log(input);
     var price = input.value;
     var shoppingListItem = db.collection("users/" + customerID + "/shoppingList").doc(id).add({price: price});
-    
-
 }
 
+//Gets the shoppers name and displays it in the DOM.
 function sayHello(){
     firebase.auth().onAuthStateChanged(function(user){
         if(user){
@@ -164,6 +168,7 @@ function sayHello(){
 }
 sayHello();
 
+//Checks if the shopper is logged in.
 function isLoggedIn() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -175,6 +180,7 @@ function isLoggedIn() {
 }
 isLoggedIn();
 
+//Checks if the shopper is a private shopper, redirect if not.
 function isPrivateShopper() {
     var user = firebase.auth().currentUser;
     var userInfo = db.collection("users").doc(user.uid);
@@ -184,6 +190,8 @@ function isPrivateShopper() {
     });
 }
 
+//Redirect given the shopper status.
+//@param isShopper Boolean true if the user is a shopper.
 function redirect(isShopper) {
     if (isShopper) {
         
@@ -192,6 +200,8 @@ function redirect(isShopper) {
     }
 }
 
+//Displays shoppers status, updates DOM.
+//@param isAvailable Boolean true if the shopper is available.
 function displayStatus(isAvailable) {
     if (isAvailable) {
         statusView.innerHTML = "Available for matching";
@@ -206,7 +216,8 @@ function displayStatus(isAvailable) {
 }
 
 
-
+//Changes the shoppers status.
+//@param isAvailable true if the shopper is available.
 function changeStatus(isAvailable) {
     var user = firebase.auth().currentUser;
 
@@ -216,4 +227,3 @@ function changeStatus(isAvailable) {
 
     displayStatus(!isAvailable);
 }
-//firebase.auth().signOut()         USE THIS TO LOG OUT USER.
