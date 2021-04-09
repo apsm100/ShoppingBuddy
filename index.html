@@ -65,12 +65,12 @@
                 <div class="card" id="addto-shopping-list">
                     <div class="card-body thecard">
                         <input id="item-name-input" oninput="searchTyping()" type="search" tabindex="0"
-                            placeholder="item or description" class="p-2">
-                        <input id="category-name-input" type="search" placeholder="category (optional)" class="p-2">
+                            placeholder="item" class="p-2">
+                        <input id="category-name-input" type="search" placeholder="category" class="p-2">
                         <div class="number-input">
                             <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
-                            <input id="quantity-input" placeholder="# of" class="quantity" min="1" name="quantity" value="" type="number">
-                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                            <input id="quantity-input" placeholder="#" class="quantity" min="1" name="quantity" value="" type="number">
+                            <button id="plusbtn" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                           </div>
                         <a onclick="addItem()" class="btn btn-primary disabled btn-lg" id="add-item-button">Add</a>
 
@@ -97,55 +97,6 @@
                         <a onclick="hideCancelModal()" class="btn btn-primary btn-lg" id="no-cancel">No</a>
                         <a onclick="cancelOrder()" class="btn btn-primary btn-lg" id="yes-cancel">Yes</a>
                         
-                    </div>
-                </div>
-            </div>
-            <div class="menu2">
-                <!-- garbage -->
-                <h5 id="shopping-list-header">Offers For You</h5>
-                <div class="card"">
-            <img style=" height:200px;width:auto;object-fit:cover;"class="card-img-top" src="images/shoe.webp"
-                    alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Women's UA Charged Breathe LACE Sportstyle Shoes</h5>
-                        <p class="card-text">Seriously improves your stamina, no joke; you'll be a beast and bulked,
-                            trust
-                            me I
-                            asked the private shopper.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Just for you</h5>
-                        <p class="card-text">Looks like you love shopping for clothes, connect with our vetted experts
-                            and
-                            look
-                            your best.</p>
-                        <a href="#" class="btn btn-primary">Create order</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body work">
-                        <h5 class="card-title">Looking For Work?</h5>
-                        <p class="card-text">We offer below minimum wage and probably take a percent of your tips!</p>
-                        <a href="#" class="btn btn-primary">Apply Now!</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">New coupons for you</h5>
-                        <p class="card-text">Wow you have been buying a lot of milk and cheese, please take this $0.02
-                            coupon,
-                            on us.</p>
-                        <a href="#" class="btn btn-primary">More milk</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Our shoppers are here for you</h5>
-                        <p class="card-text">Worry-free shop with a vetted private shopper today. Get matched today.</p>
-                        <a href="#" class="btn btn-primary">Connect</a>
                     </div>
                 </div>
             </div>

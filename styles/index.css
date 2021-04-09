@@ -206,20 +206,13 @@ input:focus {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  gap: 100px;
-  padding-left: 50px;
-  padding-right: 50px;
-  grid-template-areas: "menu1 menu2";
+  grid-template-areas: "menu1";
 }
 
 .menu1 {
   grid-area: menu1;
-}
-
-.menu2 {
-  grid-area: menu2;
 }
 
 input[type="number"] {
