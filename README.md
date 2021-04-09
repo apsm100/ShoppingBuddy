@@ -9,7 +9,7 @@ The greatest thing ever.
 * [Contents](#content)
 
 ## General Info
-This browser based web application to shop for people who can't shop for themselves.
+This browser based web application shops for people who can't shop for themselves.
 
 ## Technologies
 Technologies used for this project:
@@ -57,11 +57,3 @@ It has the following subfolders and files:
 
 Firebase hosting files:
 ├── .firebaserc...
-
-
-```
-
-Tips for file naming files and folders:
-* use lowercase with no spaces
-* use dashes (not underscore) for word separation
-
