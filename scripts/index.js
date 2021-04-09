@@ -491,6 +491,6 @@ function removeOrder(id) {
         shopperid: ""
     })
     hideCancelModal();
-    orderButton.style.display = "none";
+    orderButton.style.pointerEvents = "none";
     isOrder();
 }
