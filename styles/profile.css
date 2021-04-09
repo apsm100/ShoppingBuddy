@@ -25,3 +25,7 @@
 .text-left {
   text-align: left;
 }
+
+#edit-name {
+  display: none;
+}
