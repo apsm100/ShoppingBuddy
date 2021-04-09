@@ -15,7 +15,7 @@
 }
 
 #shopping-list {
-  width: 350px;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0px;
@@ -109,7 +109,7 @@
 
 #order-btn {
   float:left;
-  margin-left:12%;
+  margin-left:5%;
   margin-top:1em;
 }
 
@@ -150,7 +150,7 @@
 
 #add-button {
   float:right;
-  margin-right:12%;
+  margin-right:5%;
   margin-top:1em;
 }
 
@@ -290,6 +290,6 @@ input[type="number"]::-webkit-outer-spin-button {
       "menu2";
   }
   #shopping-list {
-    width: 80%;
+    width: 95%;
   }
 }
