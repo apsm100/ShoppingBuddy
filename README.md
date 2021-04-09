@@ -47,13 +47,13 @@ It has the following subfolders and files:
     /search.js                 # Search script
     /userInfo.js               # Profile changer script
 ├── styles                     # Folder for styles
-    /index.js                  # Index style
-    /index-private-shopper.js  # Private shopper index style
-    /login.js                  # Login style
-    /profile.js                # Profile style
-    /style.js                  # Default style
-    /style-private-shopper.js  # Private shopper style
-    /userInfo.js               # Profile changer style
+    /index.css                 # Index style
+    /index-private-shopper.css # Private shopper index style
+    /login.css                 # Login style
+    /profile.css               # Profile style
+    /style.css                 # Default style
+    /style-private-shopper.css # Private shopper style
+    /userInfo.css              # Profile changer style
 
 Firebase hosting files:
 ├── .firebaserc...
