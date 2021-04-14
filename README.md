@@ -1,6 +1,6 @@
 ## ShoppingBuddy
 
-The greatest thing ever.
+Shop at your favorite store, anytime, anywhere, online and delivered!
 
 ## ShoppingBuddy
 
